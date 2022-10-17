@@ -1,5 +1,6 @@
 class Solution {
     
+    // bits of pangram is a bitmask of chain of 1s of length 26
     int pangram = (1 << 26) - 1;
     
     public boolean checkIfPangram(String sentence) {
@@ -14,6 +15,7 @@ class Solution {
         return hash == pangram;
     }
     
+    // for visualizing bits in testing
     public List<Integer> toBits(int n){
         List<Integer> bits = new ArrayList();
         while(n > 0){
