@@ -4,6 +4,8 @@ class Solution {
     int pangram = (1 << 26) - 1;
     
     public boolean checkIfPangram(String sentence) {
+        if(sentence.length() < 26)
+            return false;
         
         int hash = 0;
         for(int i = 0; i < sentence.length(); ++i){
