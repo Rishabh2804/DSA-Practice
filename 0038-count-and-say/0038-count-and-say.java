@@ -5,7 +5,7 @@ class Solution {
         
         String pre = countAndSay(n - 1);
         
-        String res = "";
+        StringBuilder res = new StringBuilder();
         int count = 1;
         char curr = pre.charAt(0);
         for(int i = 1; i < pre.length(); ++i){
@@ -14,13 +14,16 @@ class Solution {
                 continue;
             }
             else{
-                res += count;
-                res += curr;
+                res.append(count);
+                res.append(curr);                
                 count = 1;
                 curr = pre.charAt(i);
             }                
         }
         
-        return res + count + curr;
+        res.append(count);
+        res.append(curr);
+            
+        return res.toString();
     }
 }
