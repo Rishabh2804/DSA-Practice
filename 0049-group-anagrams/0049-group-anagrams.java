@@ -4,15 +4,17 @@ class Solution {
         
         for(String str : strs){
             
-            char[] arr = str.toCharArray();
-            Arrays.sort(arr);
-            String sortedStr = new String(arr);
+            char[] alpha = new char[26];
             
-            List<String> anagramGroup = 
-                dict.getOrDefault(sortedStr, new ArrayList<>());
+            for(int i = 0; i < str.length(); ++i)
+                alpha[str.charAt(i) - 'a']++;
             
+            String anagramKey = String.valueOf(alpha);
+            
+            List<String> anagramGroup = dict.getOrDefault(anagramKey, new ArrayList<>());
             anagramGroup.add(str);
-            dict.put(sortedStr, anagramGroup);
+            
+            dict.put(anagramKey, anagramGroup);
         }
         
         List<List<String>> anagramGroups = new ArrayList<>();
