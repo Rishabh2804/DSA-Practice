@@ -27,10 +27,6 @@ class GFG
 //User function Template for Java
 class Solution
 {
-    int pow(int n, int m) {
-        return (int)Math.pow(n, m);
-    }
-    
     String baseEquiv(int n, int m) {
         return solve(n, m) ? "Yes" : "No";
     }
@@ -40,8 +36,8 @@ class Solution
         int si = 2, ei = 32;
         while(si <= ei){
             int mid = (si + ei) / 2;
-            int lb = (int)Math.pow(mid, m - 1);
-            int ub = (int)Math.pow(mid, m) - 1;
+            int lb = (int) Math.pow(mid, m - 1);
+            int ub = (int) Math.pow(mid, m) - 1;
             
             if(n >= lb && n <= ub)
                 return true;
