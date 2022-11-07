@@ -1,25 +1,21 @@
-class Solution {
+class Solution {        
+        
     public int maximum69Number (int num) {
         
-        ArrayList<Integer> digits = new ArrayList<>();
-        while(num != 0){
-            digits.add(num % 10);
-            num /= 10;
-        }
-        
-        Collections.reverse(digits);
-        
-        int ans = 0;
-        for(int i = 0; i < digits.size(); ++i){            
-            if(digits.get(i) == 6){
-                digits.set(i, 9);
+        int maxLen = 10000;
+        while(maxLen > 0){
+            int digit = num % maxLen;
+            maxLen /= 10;
+            
+            if(maxLen != 0)
+                digit /= maxLen;
+            
+            if(digit == 6){
+                num += 3 * maxLen;
                 break;
             }
         }
         
-        for(int i : digits)
-            ans = ans * 10 + i;
-        
-        return ans;
+        return num;
     }
 }
