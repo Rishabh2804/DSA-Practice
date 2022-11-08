@@ -9,11 +9,11 @@ class Solution {
                 good.push(s.charAt(i));
         }
         
-        String ans = "";
+        StringBuilder ans = new StringBuilder();
         while(!good.isEmpty())
-            ans += good.pop();
+            ans.append(good.pop());
         
-        return ans;
+        return ans.toString();
     }
     
     public boolean checkBad(char c1, char c2){
