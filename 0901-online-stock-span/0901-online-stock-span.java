@@ -2,16 +2,13 @@ class StockSpanner {
 
     Stack<Integer> spans;
     ArrayList<Integer> prices;
-    int today;
     
     public StockSpanner() {
         spans = new Stack<>();
         prices = new ArrayList<>();
-        today = -1;
     }
     
     public int next(int price) {
-        today++;
         
         while(!spans.isEmpty() && prices.get(spans.peek()) <= price)
             spans.pop();
@@ -21,9 +18,9 @@ class StockSpanner {
             lastDay = spans.peek();
         
         prices.add(price);        
-        spans.push(today);
+        spans.push(prices.size() - 1);
         
-        return today - lastDay;
+        return prices.size() - 1 - lastDay;
     }
 }
 
