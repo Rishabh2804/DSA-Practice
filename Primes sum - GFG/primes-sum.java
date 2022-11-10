@@ -22,12 +22,12 @@ class GFG {
 //User function Template for Java
 class Solution {
     static String isSumOfTwo(int N){
-        for(int i = 2; i <= N / 2; ++i){
+        for(int i = 3; i <= N / 2; i += 2){
             if(isPrime(i) && isPrime(N - i))
                 return "Yes";
         }
         
-        return "No";
+        return isPrime(N - 2) ? "Yes" : "No";
     }
     
     static boolean isPrime(int n){
