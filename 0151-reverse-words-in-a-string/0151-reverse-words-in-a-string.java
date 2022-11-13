@@ -18,9 +18,9 @@ class Solution {
         if(si < ei)                                
             words.push(s.substring(si, ei));
         
-        StringBuilder reversed = new StringBuilder();
+        StringBuilder reversed;
         if(!words.isEmpty())
-            reversed.append(words.pop());
+            reversed = new StringBuilder(words.pop());
         else
             return "";
         
