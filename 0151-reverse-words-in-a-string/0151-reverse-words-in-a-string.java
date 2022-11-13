@@ -18,15 +18,15 @@ class Solution {
         if(si < ei)                                
             words.push(s.substring(si, ei));
         
-        String reversed;
+        StringBuilder reversed = new StringBuilder();
         if(!words.isEmpty())
-            reversed = words.pop();
+            reversed.append(words.pop());
         else
             return "";
         
         while(!words.isEmpty())
-            reversed += " " + words.pop();
+            reversed.append(" " + words.pop());
         
-        return reversed;
+        return reversed.toString();
     }
 }
