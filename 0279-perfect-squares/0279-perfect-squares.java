@@ -3,24 +3,22 @@ class Solution {
         if (isPerfectSquare(n))
             return 1;
 
-        Queue<Integer> num = new LinkedList<>();
-        num.add(n);
-
-        int ans = 0;
-        while (!num.isEmpty()) {
-            ans++;
-            int size = num.size();
-            for (int i = 0; i < size; ++i) {
-                int curr = num.poll();
-                if (isPerfectSquare(curr))
-                    return ans;
-
-                for (int j = (int) Math.sqrt(curr); j >= 1; --j)
-                    num.add(curr - j * j);
+        int[] dp = new int[n + 1];        
+        for (int i = 1; i <= n; ++i) {
+            if (isPerfectSquare(i))
+                dp[i] = 1;
+            else {       
+                dp[i] = 4; // can't be greater than 4
+                for (int j = 1; j * j <= i; ++j)
+                    dp[i] = Math.min(dp[i], 1 + dp[i - j * j]);
             }
+            
+            // System.out.print(dp[i] + " ");
         }
-
-        return ans;
+        
+        // System.out.println();
+        
+        return dp[n];
     }
 
     public boolean isPerfectSquare(int n) {
