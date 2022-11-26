@@ -24,9 +24,9 @@ class Solution {
         if(text1[i1] == text2[i2])
             return dp[i1][i2] = 1 + solve(i1 + 1, i2 + 1, dp);
         
-        int op2 = solve(i1 + 1, i2, dp);
-        int op3 = solve(i1, i2 + 1, dp);
+        int op1 = solve(i1 + 1, i2, dp);
+        int op2 = solve(i1, i2 + 1, dp);
         
-        return dp[i1][i2] = Math.max(op2, op3);
+        return dp[i1][i2] = Math.max(op1, op2);
     }
 }
