@@ -21,13 +21,12 @@ class Solution {
         if(dp[i1][i2] != -1)
             return dp[i1][i2];
             
-        int op1 = solve(i1 + 1, i2 + 1, dp);
         if(text1[i1] == text2[i2])
-            op1 ++;
+            return dp[i1][i2] = 1 + solve(i1 + 1, i2 + 1, dp);
         
         int op2 = solve(i1 + 1, i2, dp);
         int op3 = solve(i1, i2 + 1, dp);
         
-        return dp[i1][i2] = Math.max(op1, Math.max(op2, op3));
+        return dp[i1][i2] = Math.max(op2, op3);
     }
 }
