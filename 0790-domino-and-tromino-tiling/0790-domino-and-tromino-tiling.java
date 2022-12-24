@@ -6,7 +6,7 @@ class Solution {
         
         int mod = 1000000007;
         
-        long[] dp = new long[n + 1];
+        int[] dp = new int[n + 1];
         dp[0] = 1;
         dp[1] = 1;        
         
@@ -18,6 +18,6 @@ class Solution {
             }
         }
         
-        return (int)dp[n];
+        return dp[n];
     }
 }
