@@ -8,7 +8,9 @@ class Solution {
         while(k --> 0){
             int topPile = pq.poll();
             topPile ++;
-            pq.add(topPile >> 1);            
+            
+            if(topPile > 1)
+                pq.add(topPile >> 1);            
         }
         
         int sum = 0;
