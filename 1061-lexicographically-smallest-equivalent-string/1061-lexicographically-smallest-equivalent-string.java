@@ -28,11 +28,13 @@ class Solution {
     }
 
     private void union(int x, int y) {
-        int par1 = find(x);
-        int par2 = find(y);
-        
         int lexoFirst = Math.min(x, y);        
-        dict[par1] = Math.min(dict[par1], lexoFirst);    
+        int lexoSecond = Math.max(x, y);
+        
+        int par1 = find(lexoFirst);
+        int par2 = find(lexoSecond);
+        
+        // dict[par1] = Math.min(dict[par1], lexoFirst);    
         dict[par1] = Math.min(dict[par1], dict[par2]);
         
         parent[par2] = find(par1);        
