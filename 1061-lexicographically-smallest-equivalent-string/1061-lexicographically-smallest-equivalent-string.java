@@ -35,7 +35,7 @@ class Solution {
         dict[par1] = Math.min(dict[par1], lexoFirst);    
         dict[par1] = Math.min(dict[par1], dict[par2]);
         
-        parent[find(y)] = find(x);        
+        parent[par2] = find(par1);        
     }
 
     private int find(int x) {
