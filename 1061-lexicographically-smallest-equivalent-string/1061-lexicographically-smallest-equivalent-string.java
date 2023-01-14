@@ -34,7 +34,6 @@ class Solution {
         int par1 = find(lexoFirst);
         int par2 = find(lexoSecond);
         
-        // dict[par1] = Math.min(dict[par1], lexoFirst);    
         dict[par1] = Math.min(dict[par1], dict[par2]);
         
         parent[par2] = find(par1);        
