@@ -16,12 +16,12 @@ class Solution {
             union(idx1, idx2, dict, parent);    
         }
 
-        for(int i : dict)
-            System.out.print((char)(i + 'a') + " ");
-        System.out.println();
-        for(int i = 0; i < 26; ++i)
-            System.out.print((char)(find(i, parent) + 'a') + " ");
-        System.out.println();
+        // for(int i : dict)
+        //     System.out.print((char)(i + 'a') + " ");
+        // System.out.println();
+        // for(int i = 0; i < 26; ++i)
+        //     System.out.print((char)(find(i, parent) + 'a') + " ");
+        // System.out.println();
 
         StringBuilder eqStr = new StringBuilder();
         for (int i = 0; i < baseStr.length(); ++i) {
@@ -43,6 +43,7 @@ class Solution {
         dict[par1] = Math.min(dict[par1], dict[par2]);
         
         parent[find(y, parent)] = find(x, parent);
+        // parent[y] = x;
     }
 
     private int find(int x, int[] parent) {
