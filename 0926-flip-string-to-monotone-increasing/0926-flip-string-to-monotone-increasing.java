@@ -58,14 +58,6 @@ class Solution {
             flip1[i] = Math.min(surrender, flipAll);
         }
         
-//         for(int flip : flip0)
-//             System.out.print(flip + " ");        
-//         System.out.println();
-        
-//         for(int flip : flip1)
-//             System.out.print(flip + " ");
-//         System.out.println();
-        
         return Math.min(flip0[flip0.length - 1], flip1[0]);
     }
 }
