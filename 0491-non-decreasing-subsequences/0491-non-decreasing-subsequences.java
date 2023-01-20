@@ -1,20 +1,16 @@
 class Solution {
     
-    // List<List<Integer>> subsequences;
-    HashSet<List<Integer>> subsequences;
+    List<List<Integer>> subsequences;
+    HashSet<List<Integer>> visited;
     
     public List<List<Integer>> findSubsequences(int[] nums) {
-        // subsequences = new ArrayList<>();
+        subsequences = new ArrayList<>();
         // visited = new boolean[nums.length + 1][nums.length + 1];
-        subsequences = new HashSet<>();
+        visited = new HashSet<>();
         
         solve(0, -1, new ArrayList<>(), nums);
         
-        List<List<Integer>> list = new ArrayList<>();
-        for(List<Integer> l : subsequences)
-            list.add(l);
-        
-        return list;
+        return subsequences;
     }
     
     void solve(int i, int prevI, List<Integer> curr, int[] nums){
@@ -25,18 +21,18 @@ class Solution {
             List<Integer> take = new ArrayList<>(curr);
             take.add(nums[i]);
             
-            solve(i + 1, i, take, nums);
-            if(take.size() >= 2) {
-                subsequences.add(take);        
+            if(!visited.contains(take)){
+                visited.add(take);
+                
+                solve(i + 1, i, take, nums);
+                if(take.size() >= 2)
+                    subsequences.add(take);                        
             }
         }
-        
-        List<Integer> leave = curr;
-        solve(i + 1, prevI, leave, nums);
-        if(leave.size() >= 2){
-            subsequences.add(leave);
-        }
-        
-        // visited.add(curr);
+
+        // curr acts as "leave" pov list
+        solve(i + 1, prevI, curr, nums);        
+        if(!visited.contains(curr) && curr.size() >= 2)
+            subsequences.add(curr);                    
     } 
 }
