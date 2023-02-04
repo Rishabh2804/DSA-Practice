@@ -35,9 +35,7 @@ class Foo {
                 while (a < 3)
                     wait();
                 // printThird.run() outputs "third". Do not change or remove this line.
-                printThird.run();   
-                a = 4;
-                notifyAll();             
+                printThird.run();                                              
             }
 
         }
