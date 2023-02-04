@@ -1,13 +1,16 @@
 class Solution {
-    static int[] freq1 = new int[26];
-    static int[] freq2 = new int[26];
+    int[] freq1;
+    int[] freq2;
         
     public boolean checkInclusion(String s1, String s2) {
+        
         if(s1.length() > s2.length())
             return false;
-        
-        Arrays.fill(freq1, 0);
-        Arrays.fill(freq2, 0);
+         
+        freq1 = new int[26];
+        freq2 = new int[26];
+        // Arrays.fill(freq1, 0);
+        // Arrays.fill(freq2, 0);
         
         for(int i = 0; i < s1.length(); ++i)
             freq1[s1.charAt(i) - 'a']++;
