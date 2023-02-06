@@ -14,6 +14,7 @@ class Solution {
             j += 2;
         }
         
+        System.gc();
         return res;
     }        
 }
