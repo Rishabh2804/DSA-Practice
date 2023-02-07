@@ -1,7 +1,8 @@
 class Solution {
+    static int[] masks = new int[32];
+    
     public int findTheLongestSubstring(String s) {
         
-        int[] masks = new int[32];
         Arrays.fill(masks, -1);
         masks[0] = 0;
         
