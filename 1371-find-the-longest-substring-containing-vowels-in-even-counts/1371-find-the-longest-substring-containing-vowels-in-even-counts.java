@@ -22,8 +22,6 @@ class Solution {
                 int length = i - masks[strMasks[i]];
                 maxLength = Math.max(maxLength, length);
             } else masks[strMasks[i]] = i;
-            
-            System.out.println(i + " " + strMasks[i]  + " " + masks[strMasks[i]]);
         }                
         
         return maxLength;
