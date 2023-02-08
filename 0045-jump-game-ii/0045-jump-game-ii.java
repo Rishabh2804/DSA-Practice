@@ -6,7 +6,7 @@ class Solution {
         
         jumpCount[0] = 0;
         for(int i = 0; i < nums.length; ++i){                        
-            for(int j = i + 1; j < Math.min(i + nums[i] + 1, nums.length); ++j)
+            for(int j = i + 1; j <= Math.min(i + nums[i], nums.length - 1); ++j)
                 jumpCount[j] = Math.min(jumpCount[j], 1 + jumpCount[i]);            
         }
         
