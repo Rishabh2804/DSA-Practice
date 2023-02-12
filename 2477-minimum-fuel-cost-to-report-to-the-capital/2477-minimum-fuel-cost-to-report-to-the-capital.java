@@ -41,8 +41,7 @@ class Solution {
             if(guestCar.passengers % seats != 0)
                 numCars ++;
 
-            fuel += guestCar.fuel + numCars;  
-            // System.out.println(city + " " + guestCar.fuel + " " + guestCar.passengers);
+            fuel += guestCar.fuel + numCars;              
         }
         
         return new Car(fuel, passengers);
