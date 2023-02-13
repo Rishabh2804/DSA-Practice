@@ -8,6 +8,7 @@ class Solution {
                     len ++;
             }        
         }
+        
         len >>= 1;
         return len;
     }
