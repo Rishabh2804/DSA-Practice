@@ -4,7 +4,7 @@ class Solution {
         
         if(len % 2 == 1){
             if(high % 2 == 1 && low % 2 == 1)
-                len += 2;
+                len ++;
         }
         
         return len >> 1;
