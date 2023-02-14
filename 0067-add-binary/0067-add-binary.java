@@ -18,7 +18,6 @@ class Solution {
             tempSum %= 2;
             
             sum[resLen - i - 1] = (char)('0' + tempSum);     
-            System.out.println(tempSum + " " + carry + " " + bit1 + " " + bit2);
         }
                               
         if(carry == 1) return '1' + new String(sum);
