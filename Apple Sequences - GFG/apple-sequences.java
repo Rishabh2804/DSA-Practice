@@ -40,9 +40,7 @@ class Solution{
                 if(m > 0)
                     m--;
                 else{
-                    while(arr.charAt(si) != 'O')
-                        si++;
-                    si++;
+                    while(arr.charAt(si++) != 'O');
                 }
             }
             
