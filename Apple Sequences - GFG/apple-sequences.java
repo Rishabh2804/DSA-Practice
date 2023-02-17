@@ -33,24 +33,21 @@ class GFG
 class Solution{
     public static int appleSequence(int n, int m, String arr){
         
-        List<Integer> indices = new ArrayList<>();
-        indices.add(-1);
-        for(int i = 0; i < arr.length(); ++i){
-            if(arr.charAt(i) == 'O')
-                indices.add(i);
-        }
-        indices.add(n);
-        
-        if(m >= indices.size() - 2)
-            return n;
-        
         int maxLen = 0;
-        for(int i = m; i < indices.size() - 1; ++i){
-            int leftLen = indices.get(i) - indices.get(i - m) - 1;
-            int rightLen = indices.get(i + 1) - indices.get(i) - 1;
+        int si = 0, ei = 0;
+        while(ei < n){
+            if(arr.charAt(ei) == 'O'){
+                if(m > 0)
+                    m--;
+                else{
+                    while(arr.charAt(si) != 'O')
+                        si++;
+                    si++;
+                }
+            }
             
-            int totalLen = leftLen + rightLen + 1;
-            maxLen = Math.max(maxLen, totalLen);
+            maxLen = Math.max(maxLen, ei - si + 1);
+            ei++;
         }
         
         return maxLen;
