@@ -8,7 +8,7 @@ class Solution {
         int n = piles.length;
         
         int minSpeed = 1;
-        int maxSpeed = Integer.MIN_VALUE;
+        int maxSpeed = 1;
         
         for(int pile : piles)
             maxSpeed = Math.max(maxSpeed, pile);        
