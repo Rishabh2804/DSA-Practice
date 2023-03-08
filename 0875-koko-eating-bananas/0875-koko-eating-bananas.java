@@ -1,16 +1,18 @@
 class Solution {
-    public int minEatingSpeed(int[] piles, int h) {
-        
+    
+    public int ceil(int a, int b){
+        return (a + b - 1) / b;    
+    }
+    
+    public int minEatingSpeed(int[] piles, int h) {    
         int n = piles.length;
-        int minSpeed = Integer.MAX_VALUE;
+        
+        int minSpeed = 1;
         int maxSpeed = Integer.MIN_VALUE;
         
-        for(int pile : piles){
-         //   minSpeed = Math.min(minSpeed, pile);
-            maxSpeed = Math.max(maxSpeed, pile);
-        }
+        for(int pile : piles)
+            maxSpeed = Math.max(maxSpeed, pile);        
         
-        minSpeed = 1;
         maxSpeed *= ceil(n, h);
         
         while(minSpeed < maxSpeed){
@@ -26,9 +28,5 @@ class Solution {
         }
         
         return minSpeed;
-    }
-    
-    public int ceil(int a, int b){
-        return (a + b - 1) / b;    
     }
 }
