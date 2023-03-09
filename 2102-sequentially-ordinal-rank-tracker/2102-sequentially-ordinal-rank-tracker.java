@@ -1,58 +1,55 @@
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.PriorityQueue;
-
 class SORTracker {
 
-    HashMap<String, Integer> scores;
+    class TrackedEntry implements Comparable<TrackedEntry> {
+        int score;
+        String name;
 
-    PriorityQueue<String> maxHeap;
-    PriorityQueue<String> minHeap;
+        public TrackedEntry(String _name, int _score) {
+            score = _score;
+            name = _name;
+        }
 
-    Comparator<String> locationScorer = (loc1, loc2) -> {
-        if (scores.get(loc1).equals(scores.get(loc2)))
-            return loc2.compareTo(loc1);
-   
-        return scores.get(loc1) - scores.get(loc2);
-    };
-    
+        @Override
+        public int compareTo(TrackedEntry other) {
+            int result = Integer.compare(score, other.score);
+            if (result != 0) {
+                return  result;
+            }
+
+            return other.name.compareTo(name);
+        }
+    }
+
+    int getCounter;
+    PriorityQueue<TrackedEntry> minPq;
+    PriorityQueue<TrackedEntry> maxPq;
 
     public SORTracker() {
-        scores = new HashMap<>();
-
-        minHeap = new PriorityQueue<>(locationScorer);
-        maxHeap = new PriorityQueue<>(Collections.reverseOrder(locationScorer));
+        getCounter = 1;
+        minPq = new PriorityQueue<TrackedEntry>((x, y) -> x.compareTo(y));
+        maxPq = new PriorityQueue<TrackedEntry>((x, y) -> y.compareTo(x));
     }
-
+    
     public void add(String name, int score) {
+        var entry = new TrackedEntry(name, score);
 
-        scores.put(name, score);
-
-        // no get operation yet
-        if (minHeap.isEmpty()) {
-            maxHeap.add(name);
-            return;
+        if (minPq.isEmpty() || entry.compareTo(minPq.peek()) > 0) {
+            minPq.add(entry);
+        } else {
+            maxPq.add(entry);
         }
 
-        if (locationScorer.compare(name, minHeap.peek()) <= 0) {
-            maxHeap.add(name);
-        } else {
-            maxHeap.add(minHeap.poll());
-            minHeap.add(name);
+        while (minPq.size() > getCounter) {
+            maxPq.add(minPq.poll());
         }
     }
-
+    
     public String get() {
-        String res = maxHeap.poll();
-        minHeap.add(res);
-        return res;
+        while (!maxPq.isEmpty() && minPq.size() < getCounter) {
+            minPq.add(maxPq.poll());
+        }
+
+        getCounter++;
+        return minPq.peek().name;
     }
 }
-
-/**
- * Your SORTracker object will be instantiated and called as such:
- * SORTracker obj = new SORTracker();
- * obj.add(name,score);
- * String param_2 = obj.get();
- */
