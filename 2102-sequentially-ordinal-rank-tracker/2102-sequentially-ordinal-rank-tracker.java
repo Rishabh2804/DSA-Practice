@@ -3,26 +3,26 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
-class SORTracker implements Comparator<String> {
+class SORTracker {
 
     HashMap<String, Integer> scores;
 
     PriorityQueue<String> maxHeap;
     PriorityQueue<String> minHeap;
 
-    @Override
-    public int compare(String loc1, String loc2) {
+    Comparator<String> locationScorer = (loc1, loc2) -> {
         if (scores.get(loc1).equals(scores.get(loc2)))
             return loc2.compareTo(loc1);
-
+   
         return scores.get(loc1) - scores.get(loc2);
-    }
+    };
+    
 
     public SORTracker() {
         scores = new HashMap<>();
 
-        minHeap = new PriorityQueue<>(this);
-        maxHeap = new PriorityQueue<>(Collections.reverseOrder(this));
+        minHeap = new PriorityQueue<>(locationScorer);
+        maxHeap = new PriorityQueue<>(Collections.reverseOrder(locationScorer));
     }
 
     public void add(String name, int score) {
@@ -35,7 +35,7 @@ class SORTracker implements Comparator<String> {
             return;
         }
 
-        if (compare(name, minHeap.peek()) <= 0) {
+        if (locationScorer.compare(name, minHeap.peek()) <= 0) {
             maxHeap.add(name);
         } else {
             maxHeap.add(minHeap.poll());
