@@ -1,57 +1,52 @@
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.PriorityQueue;
 
-class SORTracker {
+class SORTracker implements Comparator<String> {
 
-    static class Location implements Comparable<Location> {
-        String name;
-        int score;
+    HashMap<String, Integer> scores;
 
-        Location(String name, int score) {
-            this.name = name;
-            this.score = score;
+    PriorityQueue<String> maxHeap;
+    PriorityQueue<String> minHeap;
 
-        }
+    @Override
+    public int compare(String loc1, String loc2) {
+        if (scores.get(loc1).equals(scores.get(loc2)))
+            return loc2.compareTo(loc1);
 
-        @Override
-        public int compareTo(SORTracker.Location loc2) {
-            if (score == loc2.score)
-                return loc2.name.compareTo(name);
-            else
-                return score - loc2.score;
-        }
+        return scores.get(loc1) - scores.get(loc2);
     }
 
-    PriorityQueue<Location> maxHeap;
-    PriorityQueue<Location> minHeap;
-
     public SORTracker() {
-        minHeap = new PriorityQueue<>();
-        maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        scores = new HashMap<>();
+
+        minHeap = new PriorityQueue<>(this);
+        maxHeap = new PriorityQueue<>(Collections.reverseOrder(this));
     }
 
     public void add(String name, int score) {
 
-        Location curr = new Location(name, score);
+        scores.put(name, score);
 
         // no get operation yet
         if (minHeap.isEmpty()) {
-            maxHeap.add(curr);
+            maxHeap.add(name);
             return;
         }
 
-        if (curr.compareTo(minHeap.peek()) <= 0) {
-            maxHeap.add(curr);
+        if (compare(name, minHeap.peek()) <= 0) {
+            maxHeap.add(name);
         } else {
             maxHeap.add(minHeap.poll());
-            minHeap.add(curr);
+            minHeap.add(name);
         }
     }
 
     public String get() {
-        Location res = maxHeap.poll();
+        String res = maxHeap.poll();
         minHeap.add(res);
-        return res.name;
+        return res;
     }
 }
 
