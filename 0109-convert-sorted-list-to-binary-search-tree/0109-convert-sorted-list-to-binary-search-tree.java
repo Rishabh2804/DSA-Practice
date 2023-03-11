@@ -45,7 +45,9 @@ class Solution {
         TreeNode root = new TreeNode(slow.next.val);
         root.right = sortedListToBST(slow.next.next);
         
+        slow.next.next = null;
         slow.next = null;
+        
         root.left = sortedListToBST(head);
         
         return root;
