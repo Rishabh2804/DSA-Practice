@@ -34,8 +34,7 @@ class Solution {
         ListNode slow = head;
         ListNode fast = head;
         
-        while(fast != null && fast.next != null){
-
+        while(true){
             fast = fast.next.next;
             if(fast == null || fast.next == null)
                 break;
