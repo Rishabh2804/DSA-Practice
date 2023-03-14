@@ -18,11 +18,11 @@ class Solution {
     int sum = 0;
     
     public int sumNumbers(TreeNode root) {
-        sumNumbers(root, 0);
+        sumHelper(root, 0);
         return sum;
     }
     
-    public void sumNumbers(TreeNode root, int sumTillNow){
+    public void sumHelper(TreeNode root, int sumTillNow){
         if(root == null)
             return;
         
@@ -31,7 +31,7 @@ class Solution {
         if(root.left == null && root.right == null)
             sum += sumTillNow;
         
-        sumNumbers(root.left, sumTillNow);
-        sumNumbers(root.right, sumTillNow);
+        sumHelper(root.left, sumTillNow);
+        sumHelper(root.right, sumTillNow);
     }    
 }
