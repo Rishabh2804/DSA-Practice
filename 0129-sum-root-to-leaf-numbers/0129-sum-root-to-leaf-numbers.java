@@ -14,19 +14,24 @@
  * }
  */
 class Solution {
+    
+    int sum = 0;
+    
     public int sumNumbers(TreeNode root) {
-        return sumNumbers(root, 0);
+        sumNumbers(root, 0);
+        return sum;
     }
     
-    public int sumNumbers(TreeNode root, int sumTillNow){
+    public void sumNumbers(TreeNode root, int sumTillNow){
         if(root == null)
-            return 0;
+            return;
         
         sumTillNow = sumTillNow * 10 + root.val;
         
         if(root.left == null && root.right == null)
-            return sumTillNow;
+            sum += sumTillNow;
         
-        return sumNumbers(root.left, sumTillNow) + sumNumbers(root.right, sumTillNow);
+        sumNumbers(root.left, sumTillNow);
+        sumNumbers(root.right, sumTillNow);
     }    
 }
