@@ -19,7 +19,7 @@ class Solution {
             return true;
         
         Queue<TreeNode> nodes = new LinkedList<>();
-        nodes.offer(root);
+        nodes.add(root);
         
         boolean nullFound = false;
         while(!nodes.isEmpty()){
@@ -32,13 +32,13 @@ class Solution {
                     nullFound = true;
                 else if(nullFound)
                     return false;
-                else nodes.offer(curr.left);
+                else nodes.add(curr.left);
                 
                 if(curr.right == null)
                     nullFound = true;
                 else if(nullFound)
                     return false;
-                else nodes.offer(curr.right);
+                else nodes.add(curr.right);
             }
         }
         
