@@ -6,9 +6,7 @@ class BrowserHistory {
         URL prev;
         
         URL(String url){
-            this.url = url;
-            this.next = null;
-            this.prev = null;
+            this.url = url;            
         }        
     }
     
