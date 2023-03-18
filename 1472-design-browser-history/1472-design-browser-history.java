@@ -9,13 +9,7 @@ class BrowserHistory {
             this.url = url;
             this.next = null;
             this.prev = null;
-        }
-        
-        URL(String url, URL prev, URL next){
-            this.url = url;
-            this.prev = prev;
-            this.next = next;
-        }
+        }        
     }
     
     URL home;
@@ -27,7 +21,9 @@ class BrowserHistory {
     }
     
     public void visit(String url) {
-        curr.next = new URL(url, curr, null);
+        curr.next = new URL(url);
+        curr.next.prev = curr;
+        
         curr = curr.next;
     }
     
