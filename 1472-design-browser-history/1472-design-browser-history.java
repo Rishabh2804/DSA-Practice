@@ -7,7 +7,7 @@ class BrowserHistory {
         
         URL(String url){
             this.url = url;            
-        }        
+        }
     }
     
     URL home;
