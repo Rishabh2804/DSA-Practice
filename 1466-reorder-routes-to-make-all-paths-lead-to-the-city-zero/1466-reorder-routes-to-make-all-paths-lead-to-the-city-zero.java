@@ -4,17 +4,14 @@ class Solution {
         int count = 0;
         
         boolean[] visited = new boolean[n];
-        ArrayList<ArrayList<Integer>> inRoads = new ArrayList<>();
-        ArrayList<ArrayList<Integer>> outRoads = new ArrayList<>();
+        ArrayList<Queue<int[]>> roads = new ArrayList<>();
         
-        for(int i = 0; i < n; ++i){
-            inRoads.add(new ArrayList<>());
-            outRoads.add(new ArrayList<>());
-        }
+        for(int i = 0; i < n; ++i)
+            roads.add(new LinkedList<>());            
         
         for(int[] road : connections){
-            inRoads.get(road[1]).add(road[0]);
-            outRoads.get(road[0]).add(road[1]);
+            roads.get(road[0]).add(new int[]{road[1], 1});  // 1 for out edge
+            roads.get(road[1]).add(new int[]{road[0], -1}); //-1 for in edge
         }
         
         Queue<Integer> cities = new LinkedList<>();
@@ -27,16 +24,19 @@ class Solution {
                 int curr = cities.poll();
                 visited[curr] = true;
                 
-                for(int city : outRoads.get(curr)){
-                    if (!visited[city]){
-                        count++;
-                        inRoads.get(curr).add(city);
-                    }                    
-                }
+                Queue<int[]> neighbours = roads.get(curr);
+                int neighbourCount = neighbours.size();
                 
-                for(int city : inRoads.get(curr)){
-                    if(!visited[city])
-                        cities.add(city);    
+                while(neighbourCount --> 0){
+                    int[] neighbour = neighbours.poll();
+                    
+                    if(!visited[neighbour[0]]){
+                        cities.add(neighbour[0]);
+                    
+                        // if to-be-visited city is connected by outRoad
+                        if(neighbour[1] == 1)
+                            count++; // change to inRoad
+                    }
                 }
             }
         }
