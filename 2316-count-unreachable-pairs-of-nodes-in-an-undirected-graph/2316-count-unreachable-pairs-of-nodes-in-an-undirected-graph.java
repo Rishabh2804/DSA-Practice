@@ -19,10 +19,7 @@ class Solution {
         for(int i = 0; i < n; ++i){
             int compoSize = getComponentSize(i, adj, visited);
             
-            long unreachablePair = compoSize;
-            unreachablePair *= (nodesLeft - compoSize);
-            count += unreachablePair;
-            System.out.println(i + " " + n + " " + compoSize + " " + count);
+            count += (long) compoSize * (nodesLeft - compoSize);
             nodesLeft -= compoSize;
         }
         
