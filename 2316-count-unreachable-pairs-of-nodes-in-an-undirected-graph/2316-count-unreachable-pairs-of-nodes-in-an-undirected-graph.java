@@ -22,7 +22,7 @@ class Solution {
             long unreachablePair = compoSize;
             unreachablePair *= (nodesLeft - compoSize);
             count += unreachablePair;
-            // System.out.println(i + " " + n + " " + compoSize + " " + count);
+            System.out.println(i + " " + n + " " + compoSize + " " + count);
             nodesLeft -= compoSize;
         }
         
