@@ -3,16 +3,15 @@ class Solution {
         int n = satisfaction.length;
         Arrays.sort(satisfaction);
                 
-        int[] suffixSum = new int[n];
-        suffixSum[n - 1] = satisfaction[n - 1];
-        for(int i = n - 2; i >= 0; --i)
-            suffixSum[i] = satisfaction[i] + suffixSum[i + 1];
-        
+        int suffixSum = 0;
         int currSat = 0;
         int maxSat = 0;
-        for(int i = n - 1; i >= 0; --i){
-            currSat += suffixSum[i];
+        for(int i = n - 1; i >= 0; --i){           
+            suffixSum += satisfaction[i];
+
+            currSat += suffixSum;
             maxSat = Math.max(maxSat, currSat);
+            
         }
         
         return maxSat;
