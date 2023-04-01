@@ -1,16 +1,18 @@
 class Solution {
     public int search(int[] nums, int target) {
-        int si = 0, ei = nums.length - 1;
-        while(si <= ei){
-            int mid = (si + ei) / 2;
-            if(nums[mid] == target)
-                return mid;
-            else if(nums[mid] < target)
-                si = mid + 1;
-            else
-                ei = mid - 1;                
+        return bs(nums,target,0, nums.length-1);
+    }
+    public int bs(int[] n, int t,int s,int e){
+        if(s>e){
+            return -1;
         }
-        
-        return -1;
+        int mid = (e+s)/2;
+        if(n[mid]==t){
+            return mid;
+        }
+        if(n[mid]>t){
+            return bs(n, t, s, mid-1);
+        }
+        return bs(n, t, mid+1, e);
     }
 }
