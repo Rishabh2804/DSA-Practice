@@ -52,7 +52,7 @@ class Solution{
         int n = arr.length;
         int m = arr[0].length;
         
-        int[] coinsTable = new int[500];
+        int[] coinsTable = new int[300];
         coinsTable[0] = arr[start_x][start_y];
         arr[start_x][start_y] = -1;
         
