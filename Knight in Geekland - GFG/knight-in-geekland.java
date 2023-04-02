@@ -52,8 +52,8 @@ class Solution{
         int n = arr.length;
         int m = arr[0].length;
         
-        int[] coinsTable = new int[268];
-        coinsTable[0] = arr[start_x][start_y];
+        ArrayList<Integer> coinsTable = new ArrayList<>();
+        coinsTable.add(arr[start_x][start_y]);
         arr[start_x][start_y] = -1;
         
         Queue<int[]> steps = new LinkedList<>();
@@ -73,8 +73,6 @@ class Solution{
                     
                     if(0 <= x && x < n && 0 <= y && y < m && arr[x][y] != -1){
                         nextCoins += arr[x][y];
-                        // System.out.println(x + " " + y + " " + arr[x][y]);
-                        
                         arr[x][y] = -1;
                         
                         steps.add(new int[]{x, y});
@@ -82,21 +80,22 @@ class Solution{
                 }
             }
             
-            // System.out.println();
             moves++;
-            coinsTable[moves] = nextCoins;
+            coinsTable.add(nextCoins);
         }
         
-        return countMoves(coinsTable, moves);
+        return countMoves(coinsTable.toArray(new Integer[moves + 1]));
     }
     
-    public int countMoves(int[] arr, int n){
+    public int countMoves(Integer[] arr){
         
-        int maxCoins = arr[n];
-        int moves = n;
+        int n = arr.length;
         
-        for(int i = n; i >= 0; --i){
-            if(i + arr[i] <= n)
+        int maxCoins = arr[n - 1];
+        int moves = n - 1;
+        
+        for(int i = n - 1; i >= 0; --i){
+            if(i + arr[i] < n)
                 arr[i] += arr[i + arr[i]];
                 
             if(arr[i] >= maxCoins){
