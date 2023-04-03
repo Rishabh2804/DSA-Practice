@@ -50,7 +50,7 @@ class Solution
 	    }
 	    
 	    int ans = (oddSum - eveSum) % 11;
-	    return (ans < 0) ? 11 + ans : ans;
+	    return (ans + 11) % 11;
 	}
 	
 	
