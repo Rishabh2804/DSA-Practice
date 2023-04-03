@@ -7,14 +7,11 @@ class Solution {
         
         int si = 0, ei = people.length - 1;
         while(si <= ei){
-            boats++;
-            
-            if(people[si] + people[ei] <= limit){
+            boats++;            
+            if(people[si] + people[ei] <= limit)
                 si ++;
-                ei --;
-            } else
-                ei--;            
-            
+
+            ei--;            
         }
        
         return boats;
