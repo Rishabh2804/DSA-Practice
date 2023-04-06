@@ -14,25 +14,21 @@ class Solution {
         int count = 0;
         
         for(int i = 0; i < n; ++i){
-            if(grid[i][0] == TYPE_ISLAND) dfs(i, 0, grid);
-        }
-        
-        for(int i = 0; i < n; ++i){
-            if(grid[i][m - 1] == TYPE_ISLAND) dfs(i, m - 1, grid);
+            dfs(i, 0, grid);
+            dfs(i, m - 1, grid);
         }
         
         for(int j = 0; j < m; ++j){
-            if(grid[0][j] == TYPE_ISLAND) dfs(0, j, grid);
-        }
-        
-        for(int j = 0; j < m; ++j){
-            if(grid[n - 1][j] == TYPE_ISLAND) dfs(n - 1, j, grid);
+            dfs(0, j, grid);
+            dfs(n - 1, j, grid);
         }
         
         for (int i = 0; i < grid.length; ++i) {
             for (int j = 0; j < grid[0].length; ++j) {
-                count += (grid[i][j] == TYPE_ISLAND) ? 1 : 0;   
-                dfs(i, j, grid);
+                if(grid[i][j] == TYPE_ISLAND){
+                    count ++;
+                    dfs(i, j, grid);
+                }
             }
         }
         
