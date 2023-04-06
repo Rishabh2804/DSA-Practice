@@ -33,9 +33,7 @@ class Solution {
             for (int j = 0; j < grid[0].length; ++j) {
                 count += (grid[i][j] == TYPE_ISLAND) ? 1 : 0;   
                 dfs(i, j, grid);
-                System.out.print(grid[i][j] + " ");
             }
-            System.out.println();
         }
         
         return count;
