@@ -19,24 +19,27 @@ class Node {
 */
 
 class Solution {
-    static int exeRound = 0;
-    static int[] copied = new int[100];
-    static Node[] nodes = new Node[100];
+    // static int exeRound = 1;
+    // int[] copied = new int[100];
+    Node[] nodes = new Node[100];
     
     public Node cloneGraph(Node node) {
         if(node == null)
             return null;
         
-        exeRound++;        
+        // exeRound++;        
         return clone(node);
     }
     
     public Node clone(Node node){
-        if(copied[node.val - 1] == exeRound)
-            return nodes[node.val - 1];
+        // if(copied[node.val - 1] == exeRound)
+        //     return nodes[node.val - 1];
         
+        if(nodes[node.val - 1] != null)
+            return nodes[node.val - 1];
+
         Node root = new Node(node.val);
-        copied[node.val - 1] = exeRound;
+        // copied[node.val - 1] = exeRound;
         nodes[node.val - 1] = root;
         
         for(Node neighbor : node.neighbors){
