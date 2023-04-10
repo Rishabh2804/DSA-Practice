@@ -1,4 +1,4 @@
-class Solution {
+public class Solution {
 
     static class Parenthesis {
         char type;
@@ -13,10 +13,9 @@ class Solution {
 
         Parenthesis top = null;
         for (int i = 0; i < s.length(); ++i) {
-            char curr = s.charAt(i);
 
-            if (curr == '(' || curr == '{' || curr == '[') {
-                Parenthesis open = new Parenthesis(curr);
+            if (s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) == '[') {
+                Parenthesis open = new Parenthesis(s.charAt(i));
                 open.next = top;
                 top = open;
             } else {
@@ -24,11 +23,11 @@ class Solution {
                     return false;
 
                 char topChar = top.type;
-                if (topChar == '(' && curr != ')')
+                if (topChar == '(' && s.charAt(i) != ')')
                     return false;
-                else if (topChar == '{' && curr != '}')
+                else if (topChar == '{' && s.charAt(i) != '}')
                     return false;
-                else if (topChar == '[' && curr != ']')
+                else if (topChar == '[' && s.charAt(i) != ']')
                     return false;
 
                 top = top.next;
