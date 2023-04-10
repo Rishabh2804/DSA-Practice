@@ -1,33 +1,26 @@
 class Solution {
 
-    public static final int openID(char c) {
-        return switch (c) {
-            case '(' -> 0;
-            case '[' -> 1;
-            case '{' -> 2;
-            default -> -1;
-        };
-    }
-
-    public static final int closeID(char c) {
-        return switch (c) {
-            case ')' -> 0;
-            case ']' -> 1;
-            case '}' -> 2;
-            default -> -2;
-        };
-    }
-
     public boolean isValid(String s) {
+        char curr;
 
         Stack<Character> parenthesis = new Stack<>();
         for (int i = 0; i < s.length(); ++i) {
-            if (openID(s.charAt(i)) >= 0)
+            curr = s.charAt(i);
+            if (curr == '(' || curr == '{' || curr == '[')
                 parenthesis.push(s.charAt(i));
-            else if(parenthesis.isEmpty())
+            else if (parenthesis.isEmpty())
                 return false;
-            else if (closeID(s.charAt(i)) != openID(parenthesis.pop()))
-                return false;
+            else {
+                char top = parenthesis.peek();
+                if (top == '(' && curr == ')')
+                    parenthesis.pop();
+                else if (top == '{' && curr == '}')
+                    parenthesis.pop();
+                else if (top == '[' && curr == ']')
+                    parenthesis.pop();
+                else
+                    return false;
+            }
         }
 
         return parenthesis.isEmpty();
