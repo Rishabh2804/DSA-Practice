@@ -1,11 +1,11 @@
 public class Solution {
 
     static class Parenthesis {
-        char type;
+        char bracket;
         Parenthesis next;
 
-        Parenthesis(char type) {
-            this.type = type;
+        Parenthesis(char bracket) {
+            this.bracket = bracket;
         }
     }
 
@@ -22,12 +22,11 @@ public class Solution {
                 if (top == null)
                     return false;
 
-                char topChar = top.type;
-                if (topChar == '(' && s.charAt(i) != ')')
+                if (top.bracket == '(' && s.charAt(i) != ')')
                     return false;
-                else if (topChar == '{' && s.charAt(i) != '}')
+                else if (top.bracket == '{' && s.charAt(i) != '}')
                     return false;
-                else if (topChar == '[' && s.charAt(i) != ']')
+                else if (top.bracket == '[' && s.charAt(i) != ']')
                     return false;
 
                 top = top.next;
