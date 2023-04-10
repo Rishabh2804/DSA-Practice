@@ -1,29 +1,41 @@
 class Solution {
 
-    public boolean isValid(String s) {
-        char curr;
+    static class Parenthesis {
+        char type;
+        Parenthesis next;
 
-        Stack<Character> parenthesis = new Stack<>();
+        Parenthesis(char type) {
+            this.type = type;
+        }
+    }
+
+    public boolean isValid(String s) {
+
+        Parenthesis top = null;
         for (int i = 0; i < s.length(); ++i) {
-            curr = s.charAt(i);
-            if (curr == '(' || curr == '{' || curr == '[')
-                parenthesis.push(s.charAt(i));
-            else if (parenthesis.isEmpty())
-                return false;
-            else {
-                char top = parenthesis.peek();
-                if (top == '(' && curr == ')')
-                    parenthesis.pop();
-                else if (top == '{' && curr == '}')
-                    parenthesis.pop();
-                else if (top == '[' && curr == ']')
-                    parenthesis.pop();
-                else
+            char curr = s.charAt(i);
+
+            if (curr == '(' || curr == '{' || curr == '[') {
+                Parenthesis open = new Parenthesis(curr);
+                open.next = top;
+                top = open;
+            } else {
+                if (top == null)
                     return false;
+
+                char topChar = top.type;
+                if (topChar == '(' && curr != ')')
+                    return false;
+                else if (topChar == '{' && curr != '}')
+                    return false;
+                else if (topChar == '[' && curr != ']')
+                    return false;
+
+                top = top.next;
             }
         }
 
-        return parenthesis.isEmpty();
+        return top == null;
     }
 
 }
