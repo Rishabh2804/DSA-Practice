@@ -3,9 +3,9 @@ class Solution {
         Stack<Integer> checked = new Stack<>();
         
         int i = 0, j = 0;
-        while(i < pushed.length){            
-            
+        while(i < pushed.length){                        
             checked.push(pushed[i++]);
+            
             while(!checked.isEmpty() && j < popped.length && checked.peek() == popped[j]){
                 checked.pop();
                 j++;
