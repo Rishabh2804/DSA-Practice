@@ -41,7 +41,7 @@ class Solution {
             long ans1 = power[len1] - 1;
             long ans2 = power[len2];
             
-            count += (ans1 * ans2) % mod;
+            count += ((power[len1] - 1L) * power[len2]) % mod;
             
             l = idx + 1;
             r--;
