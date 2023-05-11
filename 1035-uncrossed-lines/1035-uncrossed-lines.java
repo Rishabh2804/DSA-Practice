@@ -25,8 +25,6 @@ class Solution {
             return solve(0, 0, nums1, nums2, dp);
         else
             return solve(0, 0, nums2, nums1, dp);
-        
-        // for(int i )
     }
 }
 
