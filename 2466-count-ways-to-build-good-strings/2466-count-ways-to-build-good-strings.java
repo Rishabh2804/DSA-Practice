@@ -26,14 +26,14 @@ class Solution {
         
         // tabulation
         for(int i = lim1; i < lim2; ++i)
-            dp[i] = ((dp[i] % mod) + (dp[i - lim1] % mod)) % mod;
+            dp[i] = (dp[i] + (dp[i - lim1] % mod)) % mod;
 
         for(int i = lim2; i <= high; ++i){
-            dp[i] = ((dp[i] % mod) + (dp[i - zero] % mod) + (dp[i - one] % mod)) % mod;
+            dp[i] = (dp[i] + (dp[i - zero] % mod) + (dp[i - one] % mod)) % mod;
             
             if(i >= low) count = ((count % mod) + (dp[i] % mod)) % mod;
         }
         
-        return (count % mod);
+        return count;
     }
 }
