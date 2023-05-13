@@ -31,7 +31,7 @@ class Solution {
         for(int i = lim2; i <= high; ++i){
             dp[i] = (dp[i] + (dp[i - zero] % mod) + (dp[i - one] % mod)) % mod;
             
-            if(i >= low) count = ((count % mod) + (dp[i] % mod)) % mod;
+            if(i >= low) count = (count + (dp[i] % mod)) % mod;
         }
         
         return count;
