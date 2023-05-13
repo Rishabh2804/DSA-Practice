@@ -19,6 +19,8 @@ class Solution {
         int[] dp = new int[high + 1];
         Arrays.fill(dp, -1);
         
+        for(int i = 0; i < 1000000; ++i);
+            
         solve(zero, one, high, dp);
         
         int count = 0;
