@@ -1,6 +1,7 @@
 class Solution {
     static final int mod = 1000000007;
     
+    // memoization
     public int solve(int zero, int one, int n, int[] dp){
         if(n < 0) return 0;
         if(n == 0) return 1;
@@ -17,16 +18,20 @@ class Solution {
     
     public int countGoodStrings(int low, int high, int zero, int one) {
         int[] dp = new int[high + 1];
-        Arrays.fill(dp, -1);
-        
-        for(int i = 0; i < 10000; ++i);
-            
-        solve(zero, one, high, dp);
-        
+        dp[0] = 1;
+
         int count = 0;
-        for(int i = low; i <= high; ++i){
-            if(dp[i] != -1)
-                count = ((count % mod) + (dp[i] % mod)) % mod;
+        int lim1 = Math.min(zero, one);
+        int lim2 = Math.max(zero, one);
+        
+        // tabulation
+        for(int i = lim1; i < lim2; ++i)
+            dp[i] = ((dp[i] % mod) + (dp[i - lim1] % mod)) % mod;
+
+        for(int i = lim2; i <= high; ++i){
+            dp[i] = ((dp[i] % mod) + (dp[i - zero] % mod) + (dp[i - one] % mod)) % mod;
+            
+            if(i >= low) count = ((count % mod) + (dp[i] % mod)) % mod;
         }
         
         return (count % mod);
