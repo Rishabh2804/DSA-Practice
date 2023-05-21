@@ -57,12 +57,6 @@ class Solution {
             }             
         }
         
-        for(int[] row : manDist){
-            for(int k : row)
-                System.out.print(k + " ");
-            System.out.println();
-        }
-        
         return minDist;
     }
     
