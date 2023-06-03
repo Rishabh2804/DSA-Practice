@@ -5,6 +5,8 @@ class Solution {
     static final int RADIUS = 3;
     static final int IS_DETONATED = 4;
     
+    static int trigger_id = -1;
+
     public long getDistance(int x1, int y1, int x2, int y2){
         return 1L * (x1 - x2) * (x1 - x2) + 1L * (y1 - y2) * (y1 - y2);
     }
@@ -32,7 +34,6 @@ class Solution {
         return adj;
     }
     
-    int trigger_id = -1;
     public int detonate(int bombID, int[][] bombInfo, ArrayList<ArrayList<Integer>> adj){
         if(bombInfo[bombID][IS_DETONATED] == trigger_id) return 0;
         
