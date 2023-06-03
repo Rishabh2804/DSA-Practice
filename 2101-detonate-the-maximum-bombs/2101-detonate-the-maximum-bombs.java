@@ -21,10 +21,10 @@ class Solution {
                 
                 long dist = getDistance(bomb1[X], bomb1[Y], bomb2[X], bomb2[Y]);
                 
-                if(dist <= (long)(1L * bomb1[RADIUS] * bomb1[RADIUS]))
+                if(dist <= 1L * bomb1[RADIUS] * bomb1[RADIUS])
                     adj.get(bomb1[BOMB_ID]).add(bomb2[BOMB_ID]);
                 
-                if(dist <= (long)(1L * bomb2[RADIUS] * bomb2[RADIUS]))
+                if(dist <= 1L * bomb2[RADIUS] * bomb2[RADIUS])
                     adj.get(bomb2[BOMB_ID]).add(bomb1[BOMB_ID]);
             }
         }
