@@ -65,9 +65,7 @@ class Solution {
         int count = 0;
         for(int i = 0; i < bombs.length; ++i){
             trigger_id = i;
-            int temp = detonate(i, bombInfo, adj);
-            System.out.println(i + " : " + temp);
-            count = Math.max(count, temp);
+            count = Math.max(count, detonate(i, bombInfo, adj));
         }
         return count;
     }
