@@ -61,7 +61,6 @@ class Solution {
         }
         
         ArrayList<ArrayList<Integer>> adj = getAdjList(bombInfo);
-        System.out.println(adj);
         int count = 0;
         for(int i = 0; i < bombs.length; ++i){
             trigger_id = i;
