@@ -13,6 +13,7 @@ class Solution {
             if(dy1 * dx != dy * dx1) return false;
         }
         
+        System.gc();
         return true;
     }
 }
