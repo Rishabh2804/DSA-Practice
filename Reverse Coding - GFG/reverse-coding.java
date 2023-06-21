@@ -27,9 +27,7 @@ class GFG {
 class Solution {
     static int sumOfNaturals(int n) {
         long ans = 1L * n * (n + 1) / 2L;
-        ans /= 2L;
-        ans %= 1000000007;
         
-        return (int)ans;
+        return (int)(ans % 1000000007);
     }
 };
