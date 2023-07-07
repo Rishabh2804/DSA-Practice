@@ -23,7 +23,7 @@ class Solution {
             boolean found = false;
             for(int i = mid; i <= n; ++i){
                 int rangeSum1 = prefix1[i] - prefix1[i - mid];
-                int rangeSum2 = prefix2[i] - prefix2[i - mid];
+                int rangeSum2 = mid - rangeSum1;
                 
                 if(rangeSum1 + k >= mid || rangeSum2 + k >= mid){
                     found = true;
