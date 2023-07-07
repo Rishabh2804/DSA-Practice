@@ -16,11 +16,6 @@ class Solution {
             }
         }
         
-        for(int i : prefix1) System.out.print(i + " ");
-        System.out.println();
-        for(int i : prefix2) System.out.print(i + " ");
-        System.out.println();
-
         int si = 0, ei = n + 1;
         int mid = (si + ei + 1) / 2;
         while(si < ei){
