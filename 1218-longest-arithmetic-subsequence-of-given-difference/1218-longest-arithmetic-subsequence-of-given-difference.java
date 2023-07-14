@@ -1,22 +1,4 @@
-class Solution {
-    private int solve(int i, int last, int diff, int[] arr, int[] dp){
-        if(i >= arr.length) return 1; 
-        
-        if(dp[i] != -1) {
-            if(arr[i] - last == diff)
-                return 1 + dp[i];
-        }
-        
-        dp[i] = solve(i + 1, arr[i], diff, arr, dp);
-        
-        if(i == 0)
-            return dp[i];
-        else if(arr[i] - last == diff)
-            return 1 + dp[i];
-        else
-            return solve(i + 1, last, diff, arr, dp);           
-    }
-    
+class Solution {    
     public int longestSubsequence(int[] arr, int difference) {
         
         int maxLen = 0;
