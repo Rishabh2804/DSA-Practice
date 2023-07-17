@@ -10,11 +10,12 @@
  */
 class Solution {
     static int carry = 0;
+    static int sum = 0;
     
     private ListNode add(ListNode l1, ListNode l2){        
         if(l1 == null) {
             if(carry == 0 || l2 == null) return l2;
-            int sum = l2.val + carry;
+            sum = l2.val + carry;
             l2.val = sum % 10;
             carry = sum / 10;
             
@@ -24,7 +25,7 @@ class Solution {
         
         if(l2 == null) {
             if(carry == 0 || l1 == null) return l1;
-            int sum = l1.val + carry;
+            sum = l1.val + carry;
             l1.val = sum % 10;
             carry = sum / 10;
             
@@ -35,7 +36,7 @@ class Solution {
         int val1 = 0;
         int val2 = 0;
         
-        int sum = l1.val + l2.val + carry;
+        sum = l1.val + l2.val + carry;
         l1.val = sum % 10;
         carry = sum / 10;
         
