@@ -9,75 +9,77 @@
  * }
  */
 class Solution {
-    public ListNode reverse(ListNode head){
-        if(head==null || head.next==null)
-            return head;
+    static int carry = 0;
+    
+    private ListNode add(ListNode l1, ListNode l2){        
+        if(l1 == null) {
+            if(carry == 0 || l2 == null) return l2;
+            int sum = l2.val + carry;
+            l2.val = sum % 10;
+            carry = sum / 10;
+            
+            l2.next = add(l2.next, l1);
+            return l2;
+        }
         
-        ListNode rest=reverse(head.next);
-        head.next.next=head;
-        head.next=null;
+        if(l2 == null) {
+            if(carry == 0 || l1 == null) return l1;
+            int sum = l1.val + carry;
+            l1.val = sum % 10;
+            carry = sum / 10;
+            
+            l1.next = add(l1.next, l2);
+            return l1;
+        }
         
-        return rest;
+        int val1 = 0;
+        int val2 = 0;
+        
+        int sum = l1.val + l2.val + carry;
+        l1.val = sum % 10;
+        carry = sum / 10;
+        
+        l1.next = add(l1.next, l2.next);
+        return l1;
     }
     
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        if(l1==null)
-            return l2;
-        if(l2==null)
-            return l1;
+        if(l1 == null) return l2;
+        if(l2 == null) return l1;
         
-        l1=reverse(l1);
-        l2=reverse(l2);
+        carry = 0;
+        ListNode temp = null;
         
-        ListNode temp1=l1;
-        ListNode temp2=l2;
-        
-        ListNode ans=null,temp3=null;
-        int carry=0;
-        
-        while(temp1!=null || temp2!=null){
-            int n1=0,n2=0;
+        ListNode rev1 = null;
+        while(l1 != null){
+            temp = l1.next;
+            l1.next = rev1;
+            rev1 = l1;
             
-            if(temp1!=null)
-                n1=temp1.val;
-            if(temp2!=null)
-                n2=temp2.val;
-            
-            int sum= carry + n1 + n2;
-            
-            if(sum>9){
-                carry=1;
-                sum=sum%10;   
-            }
-            else
-                carry=0;
-            
-            ListNode node=new ListNode(sum);
-            if(ans==null){
-                ans=node;
-                temp3=ans;               
-            }
-            else{ 
-                temp3.next=node;
-                temp3=temp3.next;    
-            }
-            
-            if(temp1!=null){
-                temp1=temp1.next;
-            }
-            
-            if(temp2!=null){
-                temp2=temp2.next;
-            }
-            
-            if(temp1==null && temp2==null && carry==1){
-                ListNode one = new ListNode(1);
-                temp3.next=one;
-            }
+            l1 = temp;
         }
         
-        return reverse(ans);
+        ListNode rev2 = null;
+        while(l2 != null){
+            temp = l2.next;
+            l2.next = rev2;
+            rev2 = l2;
+            
+            l2 = temp;
+        }
         
-    
+        rev1 = add(rev1, rev2);
+        while(rev1 != null){
+            temp = rev1.next;
+            rev1.next = l1;
+            l1 = rev1;
+            
+            rev1 = temp;
+        }
+        
+        if (carry != 0)
+            l1 = new ListNode(carry, l1);
+        
+        return l1;
     }
 }
