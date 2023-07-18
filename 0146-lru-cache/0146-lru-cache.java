@@ -81,7 +81,6 @@ class LRUCache {
             }
             
             db.put(key, tail);
-            // System.out.println(db);
         }
         
     }
