@@ -5,15 +5,12 @@ class Solution {
     
     private int lowerBound(int si, int[][] arr, int lim){
         
-        System.out.print("si :" + si + " lim :" + lim);
         int ei = arr.length - 1;
         while(si < ei){
             int mid = (si + ei) / 2;
             if(arr[mid][SI] < lim) si = mid + 1;
             else ei = mid;
         }
-        
-        System.out.println(" idx :" + si);
         
         if(si < arr.length && arr[si][SI] < lim) return si + 1;
         else return si;
@@ -42,12 +39,6 @@ class Solution {
         Arrays.fill(dp, -1);
         
         int maxIntervals = solve(0, intervals, dp);
-        for(int i : dp){
-            System.out.print(i + " ");
-        }
-        System.out.println();
-        System.out.println("ans :" + maxIntervals + '\n');
-
         return intervals.length - maxIntervals;
     }
 }
