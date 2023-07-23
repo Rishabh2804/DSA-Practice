@@ -29,14 +29,11 @@ class Solution {
             List<TreeNode> rightFBTs = allPossibleFBT(rest - i);
             
             for(TreeNode left : leftFBTs){
-                for(TreeNode right : rightFBTs){
-                    TreeNode root1 = new TreeNode(0, left, right);                    
-                    res.add(root1);
+                for(TreeNode right : rightFBTs){                    
+                    res.add(new TreeNode(0, left, right));
                     
-                    if(i != rest / 2){
-                        TreeNode root2 = new TreeNode(0, right, left);  
-                        res.add(root2);
-                    }
+                    if(i != rest / 2)
+                        res.add(new TreeNode(0, right, left));                    
                 }
             }
         }                
