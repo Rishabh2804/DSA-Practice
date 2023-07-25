@@ -10,7 +10,7 @@ class Solution {
                 return mid;
             else if(arr[mid - 1] <= arr[mid] && arr[mid] <= arr[mid + 1]) // forward slope
                 si = mid + 1;
-            else 
+            else  // backward slope
                 ei = mid - 1;
         }
         
