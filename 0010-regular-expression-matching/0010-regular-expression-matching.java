@@ -2,15 +2,15 @@ class Solution {
     static final char ANY_CHAR = '.';
     static final char ANY_FREQ = '*';
     
-//     boolean isStarState(int pi, String p){
-//         // check for star state
-//         return pi + 1 < p.length() && p.charAt(pi + 1) == ANY_FREQ;
-//     }
+    boolean isStarState(int pi, String p){
+        // check for star state
+        return pi + 1 < p.length() && p.charAt(pi + 1) == ANY_FREQ;
+    }
     
-//     boolean isMatch(int si, int pi, String s, String p){
-//         // check for match (identical character or dot state)
-//         return p.charAt(pi) == ANY_CHAR || (si < s.length() && p.charAt(pi) == s.charAt(si));
-//     }
+    boolean isMatch(int si, int pi, String s, String p){
+        // check for match (identical character or dot state)
+        return p.charAt(pi) == ANY_CHAR || (si < s.length() && p.charAt(pi) == s.charAt(si));
+    }
     
     Boolean solve(int si, int pi, String s, String p, Boolean[][] dp){
         if(pi >= p.length()) return si >= s.length();
