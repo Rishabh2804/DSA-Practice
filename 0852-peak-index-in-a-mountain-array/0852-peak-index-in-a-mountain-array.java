@@ -5,7 +5,7 @@ class Solution {
         int ei = arr.length - 1;
         
         while(si <= ei){
-            int mid = si + (ei - si) / 2;
+            int mid = (ei + si) / 2;
             if(arr[mid - 1] < arr[mid] && arr[mid] > arr[mid + 1]) // mountain peak
                 return mid;
             else if(arr[mid - 1] <= arr[mid] && arr[mid] <= arr[mid + 1]) // forward slope
