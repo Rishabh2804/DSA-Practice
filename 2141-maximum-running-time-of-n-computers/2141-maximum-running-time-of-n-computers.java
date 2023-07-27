@@ -1,6 +1,5 @@
 class Solution {
-    public long maxRunTime(int n, int[] batteries) {
-        
+    public long maxRunTime(int n, int[] batteries) {        
         int m = batteries.length;
         Arrays.sort(batteries);
         
@@ -12,13 +11,11 @@ class Solution {
         for(int i = start; i < m - 1; ++i){
             int diff = batteries[i + 1] - batteries[i];
             long reqPower = (i - start + 1) * diff;
-            if(reqPower <= extraPower)
-                extraPower -= reqPower;
-            else 
-                return (long) (batteries[i] + extraPower / (i - start + 1));            
+            
+            if(reqPower <= extraPower) extraPower -= reqPower;
+            else return (long) (batteries[i] + extraPower / (i - start + 1));            
         }
         
-        long ans = batteries[m - 1] + extraPower / n;
-        return ans;
+        return batteries[m - 1] + extraPower / n;
     }
 }
