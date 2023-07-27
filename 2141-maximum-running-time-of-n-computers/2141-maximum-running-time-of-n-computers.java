@@ -14,11 +14,8 @@ class Solution {
             long reqPower = (i - start + 1) * diff;
             if(reqPower <= extraPower)
                 extraPower -= reqPower;
-            else {
-                int addedPower = (int) (extraPower / (i - start + 1));
-                batteries[i] += addedPower;
-                return (long) batteries[i];
-            }
+            else 
+                return (long) (batteries[i] + extraPower / (i - start + 1));            
         }
         
         long ans = batteries[m - 1] + extraPower / n;
