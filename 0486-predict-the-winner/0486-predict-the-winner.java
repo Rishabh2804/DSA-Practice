@@ -28,7 +28,7 @@ class Solution {
     }
     
     public boolean PredictTheWinner(int[] nums) {
-        // if(nums.length % 2 == 0) return true;
+        if(nums.length % 2 == 0) return true;
         
         int n = nums.length;
         
