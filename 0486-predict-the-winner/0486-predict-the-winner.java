@@ -1,7 +1,7 @@
 class Solution {
     
-    private  int[] sums;
-    private  void buildPrefixSum(int[] nums){
+    private static int[] sums;
+    private static void buildPrefixSum(int[] nums){
         sums = new int[nums.length];
         sums[0] = nums[0];
         
@@ -9,7 +9,7 @@ class Solution {
             sums[i] = nums[i] + sums[i - 1];
     }
     
-    private  int getRangeSum(int l, int r){
+    private static int getRangeSum(int l, int r){
         if(l == 0) return sums[r];
         return sums[r] - sums[l - 1];
     }
