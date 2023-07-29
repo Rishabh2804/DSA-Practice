@@ -3,7 +3,10 @@ class Solution {
     static final int[] stateA = {4, 3, 2, 1};
     static final int[] stateB = {0, 1, 2, 3};
     static final double BRANCH_PROB = 0.25;
+    
+    static boolean initialised = false;
     static final int LIMIT = 200;
+    static final double[][] dp = new double[LIMIT + 1][LIMIT + 1];
     
     public double solve(int a, int b, double[][] dp){
         if(a <= 0 && b <= 0) return 0.5; 
@@ -23,9 +26,10 @@ class Solution {
         n = (n + 25 - 1) / 25; // ceil divide
         if(n >= LIMIT) return 1;
         
-        double[][] dp = new double[n + 1][n + 1];
-        for(double[] row : dp)
-            Arrays.fill(row, -1);
+        if(!initialised){
+            for(double[] row : dp) Arrays.fill(row, -1);            
+            initialised = true;
+        }
         
         return solve(n, n, dp);
     }
