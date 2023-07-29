@@ -21,7 +21,7 @@ class Solution {
     
     public double soupServings(int n) {        
         n = (n + 25 - 1) / 25; // ceil divide
-        n = Math.min(n, LIMIT);
+        if(n >= LIMIT) return 1;
         
         double[][] dp = new double[n + 1][n + 1];
         for(double[] row : dp)
