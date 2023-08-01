@@ -29,9 +29,9 @@ class Solution {
         
         while(!cells.isEmpty()){
             int[] cell = cells.poll();
-            int val = cell[VAL];
-            int i = cell[X];
-            int j = cell[Y];
+            int val = cell[0];
+            int i = cell[1];
+            int j = cell[2];
             
             for(int dir = 0; dir < 4; ++dir){
                 int x = i + xDir[dir];
