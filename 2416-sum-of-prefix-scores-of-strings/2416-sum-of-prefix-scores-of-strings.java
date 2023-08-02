@@ -1,11 +1,9 @@
 class TrieNode {
     TrieNode[] children;
-    boolean isEndOfWord;
     int words;
     
     public TrieNode(){
         children = new TrieNode[26];
-        isEndOfWord = false;
         words = 0;
     }
 }
@@ -18,10 +16,8 @@ class Trie {
     }
 
     private void add(TrieNode root, String key, int si) {
-        if (si >= key.length()) {
-            root.isEndOfWord = true;
+        if (si >= key.length())
             return;
-        }
 
         int childIndex = key.charAt(si) - 'a';
         TrieNode child = root.children[childIndex];
@@ -43,15 +39,13 @@ class Trie {
     private void transformTrie(TrieNode root, int prevScore){
         if(root == null) return;
         
-        // if(root.isEndOfWord){
-            root.words += prevScore;
-            prevScore = root.words;
-        // }
+        root.words += prevScore;
+        prevScore = root.words;
         
         for(TrieNode child : root.children){
             if (child != null) 
                 transformTrie(child, prevScore);
-        }        
+        }
     }
     
     public void transformTrie(){
