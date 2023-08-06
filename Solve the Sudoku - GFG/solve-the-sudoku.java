@@ -99,12 +99,10 @@ class Solution
         int box = -1;
         for(int row = 0; row < BOARD_SIZE; ++row){
             for(int col = 0; col < BOARD_SIZE; ++col){
-                if(col % 3 == 0) box++;
-                
                 if(grid[row][col] == 0) continue;
     
                 box = 3 * (row / 3) + (col / 3);
-        
+            
                 int num = grid[row][col] - 1;
                 gridMap[row][num] ^= ROW_CHECK;
                 gridMap[col][num] ^= COL_CHECK;
@@ -123,6 +121,8 @@ class Solution
     //Function to print grids of the Sudoku.
     static void printGrid (int grid[][])
     {
+        // System.out.println(count);
+        
         for(int[] row : grid){
             for(int cell : row)
                 System.out.print(cell + " ");
