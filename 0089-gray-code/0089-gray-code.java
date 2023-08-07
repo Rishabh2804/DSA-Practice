@@ -1,7 +1,6 @@
 class Solution {
     public List<Integer> grayCode(int n) {
         
-        int maxVal = (1 << n) - 1;
         List<Integer> codes = new LinkedList<>();        
         codes.add(0);
         
