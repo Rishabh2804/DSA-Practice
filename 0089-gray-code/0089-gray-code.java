@@ -1,23 +1,17 @@
+import java.util.AbstractList;
+
 class Solution {
     public List<Integer> grayCode(int n) {
-        
-        List<Integer> codes = new LinkedList<>();        
-        codes.add(0);
-        
-        int bitPos = 0;
-        while(bitPos < n){
-            int mask = 1 << bitPos;
-            
-            int size = codes.size();
-            for(int i = size - 1; i >= 0; --i){
-                int grayCode = codes.get(i) | mask;
-                codes.add(grayCode);
+                
+        return new AbstractList<Integer>(){
+            public Integer get(int index) {
+                return index ^ (index >> 1);
             }
             
-            bitPos++;
-        }
-        
-        return codes;
+            public int size(){
+                return 1 << n;
+            }
+        };
     }
 }
 
