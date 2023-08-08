@@ -50,7 +50,7 @@ class Solution {
         int n = nums.length;        
         int pivot = getMaxIdx(nums); // idx of max element
         
-        System.out.println(pivot);
+        // System.out.println(pivot);
         
         int si = 0;
         int ei = n - 1;
