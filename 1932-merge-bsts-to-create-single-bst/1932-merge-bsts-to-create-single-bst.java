@@ -67,45 +67,18 @@ class Solution {
     }
     
     public TreeNode canMerge(List<TreeNode> trees) {
-        HashMap<Integer, TreeNode> parent = new HashMap<>();
         HashMap<Integer, Integer> nodes = new HashMap<>();
         
         int k = 0;
-        for(TreeNode root : trees){
-            if(root.left != null)
-                parent.put(root.left.val, root);
-            
-            if(root.right != null)
-                parent.put(root.right.val, root); 
-            
+        for(TreeNode root : trees)
             nodes.put(root.val, k++);
-        }
         
         TreeNode ans = null;
-//         for(TreeNode root : trees){
-//             TreeNode parNode = parent.get(root.val);
-//             if(parNode == null){
-//                 if(ans == null) {
-//                     ans = root;
-//                     continue;
-//                 } else return null;
-//             }
-            
-//             if(parNode.val > root.val) 
-//                 parNode.left = root;
-//             else 
-//                 parNode.right = root;
-            
-//             parent.remove(root.val);
-//         }
-        
         for(int i = 0; i < trees.size(); ++i){   
             if(trees.get(i) == null) continue;
             
             // temporarily marking visited
-            TreeNode curr = trees.get(i);
-            // trees.set(i, null);
-            
+            TreeNode curr = trees.get(i);    
             nodes.remove(curr.val);
             
             dfs(curr, i, trees, nodes);
