@@ -3,9 +3,9 @@ class Solution {
     static final int SIZE = 10;
     static int[] factorial = new int[SIZE];
     
-    private static void fact(int n){        
+    private static void fact(){        
         factorial[0] = 1;        
-        for(int i = 1; i <= n; ++i)
+        for(int i = 1; i < SIZE; ++i)
             factorial[i] = i * factorial[i - 1];
     } 
     
@@ -36,7 +36,8 @@ class Solution {
     }
     
     public String getPermutation(int n, int k) {
-        fact(n);
+        if(factorial[0] == 0)
+            fact();
         
         ArrayList<Integer> ans = solve(n, k);
         StringBuilder res = new StringBuilder();
