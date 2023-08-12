@@ -39,10 +39,10 @@ class Solution {
         fact(n);
         
         ArrayList<Integer> ans = solve(n, k);
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for(int i = ans.size() - 1; i >= 0; --i)
-            res += (char)(ans.get(i) + '0');
+            res.append((char)(ans.get(i) + '0'));
         
-        return res;
+        return res.toString();
     }
 }
