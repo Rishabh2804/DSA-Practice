@@ -46,13 +46,7 @@ class Solution {
                 
             }
         }
-        
-        for(int[] row : obstacleGrid){
-            for(int cell : row)
-                System.out.print(cell + " ");
-            System.out.println();
-        }
-        
+                
         return obstacleGrid[n - 1][m - 1];
     }
 }
