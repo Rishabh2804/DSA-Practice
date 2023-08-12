@@ -5,9 +5,7 @@ class Solution {
 
         if(obstacleGrid[0][0] == 1 || obstacleGrid[n - 1][m - 1] == 1) 
             return 0;
-        
-        if(n == 1 && m == 1) return 1;
-        
+                
         // tranforming the states in 
         // uppermost row and leftmost column
         // for representing no of paths 
