@@ -8,14 +8,13 @@ class Solution {
         boolean ans = false;
                 
         if(i <= nums.length - 3) {
-            if(nums[i] == nums[i + 1] && nums[i + 1] == nums[i + 2]){
+            if(nums[i] == nums[i + 1] && nums[i + 1] == nums[i + 2])
+                ans = solve(i + 3, nums, dp);              
+            else if((1 + nums[i]) == nums[i + 1] && (1 + nums[i + 1]) == nums[i + 2]) 
                 ans = solve(i + 3, nums, dp);
-                if(ans) return dp[i] = ans;
-            } else if((1 + nums[i]) == nums[i + 1] && (1 + nums[i + 1]) == nums[i + 2]) {
-                ans = solve(i + 3, nums, dp);
-                if(ans) return dp[i] = ans;
-            }            
         } 
+        
+        if(ans) return dp[i] = ans;
         
         if(nums[i] == nums[i + 1])
             ans = solve(i + 2, nums, dp);
