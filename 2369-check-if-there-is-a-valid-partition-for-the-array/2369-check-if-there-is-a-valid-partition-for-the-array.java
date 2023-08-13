@@ -4,7 +4,6 @@ class Solution {
         
         int n = nums.length;        
         boolean[] dp = new boolean[n];
-        // dp[0] = true;
         
         for(int i = 1; i < nums.length; ++i){
             if(i >= 2){
@@ -20,12 +19,10 @@ class Solution {
                 }
             }
             
-            if(dp[i]) continue;
-            
             // two equal elements
             if(nums[i] == nums[i - 1]){
                 if(i == 1) dp[i] = true;
-                else dp[i] = dp[i - 2];
+                else dp[i] |= dp[i - 2];
             }
         }
         
