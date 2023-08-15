@@ -13,6 +13,30 @@ class Solution {
     }
     
     public int findTargetSumWays(int[] nums, int target) {
-        return solve(0, target, nums);
+        HashMap<Integer, Integer> currFreq = new HashMap<>();
+        HashMap<Integer, Integer> auxFreq = new HashMap<>();
+        
+        currFreq.put(0, 1);
+        for(int ele : nums){
+            for(int sum : currFreq.keySet()){
+                int freq = currFreq.get(sum);
+                
+                // remove from curr level,
+                // add to next level
+                
+                currFreq.put(sum, 0);        
+                
+                auxFreq.put(sum + ele, auxFreq.getOrDefault(sum + ele, 0) + freq);
+                auxFreq.put(sum - ele, auxFreq.getOrDefault(sum - ele, 0) + freq);
+            }
+            
+            // swap the two maps
+            HashMap<Integer, Integer> temp = currFreq;
+            currFreq = auxFreq;
+            auxFreq = temp;
+        }
+        
+        // return solve(0, target, nums);
+        return currFreq.getOrDefault(target, 0);
     }
 }
