@@ -7,6 +7,7 @@ class Array {
     
 	public static void main (String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		PrintWriter ot = new PrintWriter(System.out);
 		int t = Integer.parseInt(br.readLine().trim()); //Inputting the testcases
 		
 		while(t-->0){
@@ -29,14 +30,14 @@ class Array {
 		    //calling leaders() function
 		    res = obj.leaders(arr, n);
 		    
-		    //appending result to a String
+
 		    for(int i=0; i<res.size(); i++){
-		        str.append(res.get(i)+" ");
+		        ot.print(res.get(i)+" ");
 		    }
 		    
-		    //printing the String
-		    System.out.println(str);
+		    ot.println();
 		}
+		ot.close();
 		
 	}
 }
@@ -47,18 +48,19 @@ class Array {
 class Solution{
     //Function to find the leaders in the array.
     static ArrayList<Integer> leaders(int arr[], int n){
+        ArrayList<Integer> leaders = new ArrayList<>();
         
-        ArrayList<Integer> lead = new ArrayList<>();
+        int currLeader = arr[n - 1];
+        leaders.add(currLeader);
         
-        int max = -1;
-        for(int i = n - 1; i >= 0; --i) {
-            max = Math.max(max, arr[i]);
-            if(arr[i] == max)
-                lead.add(arr[i]);
+        for(int i = n - 2; i >= 0; --i){
+            if(arr[i] >= currLeader){
+                currLeader = arr[i];
+                leaders.add(currLeader);
+            }
         }
         
-        Collections.reverse(lead);
-        
-        return lead;   
+        Collections.reverse(leaders);
+        return leaders;
     }
 }
