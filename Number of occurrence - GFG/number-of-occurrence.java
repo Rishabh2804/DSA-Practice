@@ -36,11 +36,39 @@ public class Main {
 
 
 class Solution {
+    int lowerBound(int[] arr, int x){
+        int si = 0, ei = arr.length - 1;
+        
+        while(si < ei){
+            int mid = (si + ei) / 2;
+            if(arr[mid] < x)
+                si = mid + 1;
+            else
+                ei = mid;
+        }
+        
+        return si;
+    }
+    
+    int upperBound(int[] arr, int x){
+        int si = 0, ei = arr.length - 1;
+        
+        while(si < ei){
+            int mid = (si + ei + 1) / 2;
+            if(arr[mid] > x)
+                ei = mid - 1;
+            else
+                si = mid;
+        }
+        
+        return si;
+    }
+    
     int count(int[] arr, int n, int x) {
-        int count = 0;
-        for(int i : arr)
-            count += (i == x) ? 1 : 0;
-            
-        return count;
+        
+        int low = lowerBound(arr, x);
+        if(arr[low] != x) return 0;
+        
+        return upperBound(arr, x) - lowerBound(arr, x) + 1;
     }
 }
