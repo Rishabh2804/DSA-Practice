@@ -6,13 +6,10 @@ class Solution {
     private int lowerBound(int si, int x, List<List<Integer>> offers) {
         int ei = offers.size();
         
-        int ans = -1;
         while(si < ei) {
             int mid = (si + ei) / 2;
-            if(offers.get(mid).get(START) > x){                
+            if(offers.get(mid).get(START) > x)
                 ei = mid;
-                ans = mid;
-            }
             else si = mid + 1;
         }        
         
@@ -26,10 +23,8 @@ class Solution {
         
         int leave = solve(i + 1, offers, dp);
                 
-        int take = offers.get(i).get(GOLD);
         int nextIdx = lowerBound(i + 1, offers.get(i).get(END), offers);
-        // if (nextIdx != -1)
-            take += solve(nextIdx, offers, dp);
+        int take = offers.get(i).get(GOLD) + solve(nextIdx, offers, dp);
         
         return dp[i] = Math.max(leave, take);
     }
