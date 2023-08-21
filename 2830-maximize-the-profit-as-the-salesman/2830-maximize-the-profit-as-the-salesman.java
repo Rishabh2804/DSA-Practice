@@ -23,8 +23,10 @@ class Solution {
         
         int leave = solve(i + 1, offers, dp);
                 
+        int take = offers.get(i).get(GOLD);
         int nextIdx = lowerBound(i + 1, offers.get(i).get(END), offers);
-        int take = offers.get(i).get(GOLD) + solve(nextIdx, offers, dp);
+        if(nextIdx < offers.size())
+            take += solve(nextIdx, offers, dp);
         
         return dp[i] = Math.max(leave, take);
     }
