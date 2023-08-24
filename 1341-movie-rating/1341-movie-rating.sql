@@ -12,7 +12,7 @@ TopMovie as (
         Row_Number() over (order by avg(rating) desc, M.title) as rn    
     from Movies M inner join MovieRating R
     on M.movie_id = R.movie_id 
-    where month(created_at) = '02' and year(created_at) = '2020'
+    where created_at between '2020-02-01' and '2020-02-29'
     group by M.title
 )
 select results
