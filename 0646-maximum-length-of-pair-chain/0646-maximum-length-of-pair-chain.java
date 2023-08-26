@@ -22,7 +22,7 @@ class Solution {
         int leave = solve(i + 1, pairs, dp);
         int take = 1;
         int nextPair = lowerBound(i + 1, pairs, pairs[i][1]);
-        if(nextPair < pairs.length)
+        // if(nextPair < pairs.length)
             take += solve(nextPair, pairs, dp);
         
         return dp[i] = Math.max(leave, take);
