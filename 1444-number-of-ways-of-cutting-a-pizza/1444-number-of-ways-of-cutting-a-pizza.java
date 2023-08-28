@@ -73,12 +73,6 @@ class Solution {
             else return 0;
         }
         
-        for(int[] row : apples){
-            for(int apple : row)
-                System.out.print(apple + " ");
-            System.out.println();
-        }
-        
         Integer[][][] dp = new Integer[rows][cols][k + 1];
         return solve(0, 0, k, dp);
     }
