@@ -10,15 +10,18 @@ class Solution {
         }
         
         int hour = 0;
-        int minPenalty = totalVisHours; // at 0th hour
         
-        int currVisHours = 0;
+        int postCloseVis = totalVisHours;
+        int currCloseIdle = 0;
+
+        // at 0th hour
+        int minPenalty = totalVisHours; // same as currCloseIdle + postCloseVis
+        
         for(int i = 0; i < n; ++i){
             if(customers.charAt(i) == 'Y')
-                currVisHours ++;
-            
-            int postCloseVis = totalVisHours - currVisHours;
-            int currCloseIdle = i - currVisHours + 1;
+                postCloseVis --;
+            else
+                currCloseIdle ++;
             
             int currPenalty = currCloseIdle + postCloseVis;
             
