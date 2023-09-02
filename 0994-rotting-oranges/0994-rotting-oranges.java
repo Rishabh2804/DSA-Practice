@@ -44,8 +44,6 @@ class Solution {
                     grid[x][y] = EMPTY;
                     freshOranges--;                        
                 }
-                
-                System.out.println(coords[0] + " " + coords[1] + " " + minutes + " " + freshOranges);
             }
             
             minutes++;
