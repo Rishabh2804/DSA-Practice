@@ -11,8 +11,6 @@ class Solution {
         for(String word : dictionary){
             if(i + word.length() > s.length()) continue;
             
-            System.out.println(word + " : " + s.substring(i, i + word.length()));
-            
             if(s.substring(i, i + word.length()).equals(word))
                 take = Math.min(take, solve(i + word.length(), s, dictionary, dp));            
         }
