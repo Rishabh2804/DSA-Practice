@@ -35,9 +35,8 @@ class GFG {
 
 class Solution {
     static final int MOD = 100000;
-    static final int SIZE = MOD + 1;
+    static final int SIZE = MOD;
     static boolean[] vis = new boolean[SIZE];
-    
     
     static final int NUM = 0;
     static final int OPS = 1;
