@@ -1,27 +1,43 @@
 class Solution {
-    
-    public void traverse(int i, int[][] isConnected, boolean[] visited){
-        if(visited[i]) return;
+    private void traverse(int curr, ArrayList<ArrayList<Integer>> adj, boolean[] vis){
         
-        visited[i] = true;
-        for(int city = 0; city < isConnected.length; ++city){
-            if(isConnected[i][city] == 1) 
-                traverse(city, isConnected, visited);
-        }        
+        if(vis[curr]) return;
+        
+        vis[curr] = true;
+        for(int nbr : adj.get(curr))
+            traverse(nbr, adj, vis);
+                
     }
     
     public int findCircleNum(int[][] isConnected) {
         
-        boolean[] visited = new boolean[isConnected.length];
+        int n = isConnected.length;
         
-        int provinces = 0;
-        for(int city = 0; city < isConnected.length; ++city){
-            if(!visited[city]){
-                provinces++;
-                traverse(city, isConnected, visited);
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+        for(int i = 0; i < n; ++i)
+            adj.add(new ArrayList<>());
+        
+        for(int i = 0; i < n; ++i){
+            for(int j = 0; j < n; ++j){
+                if(i == j) continue;
+                
+                if(isConnected[i][j] == 1){
+                    adj.get(i).add(j);
+                    adj.get(j).add(i);
+                }
             }
         }
         
-        return provinces;
+        boolean[] vis = new boolean[n];
+        
+        int count = 0;
+        for(int i = 0; i < n; ++i){
+            if(!vis[i]){
+                count++;
+                traverse(i, adj, vis);
+            }
+        }
+        
+        return count;
     }
 }
