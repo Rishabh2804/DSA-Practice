@@ -126,7 +126,6 @@ class Solution
         if(k <= 0) return ans;
         
         k--;
-        // System.out.println(k + " " + root.data);
         if(k == 0) return root.data;
         
         return solve(root.left);
@@ -136,27 +135,26 @@ class Solution
     public int kthLargest(Node root, int k)
     {
         if(root == null) 
-            return -1;
+            return -k;
         
-        this.k = k;
-        return solve(root);
-        // int k1 = kthLargest(root.right, k);
-        // // System.out.println(root.data + " " + k + " " + k1);
         
-        // if(k1 < 0){
-        //     // suppose right subtree has total of 10 nodes
-        //     // value of k = 12
-        //     // thus, ans can't be found int right subtree
-        //     // the right subtree would hence return negative of 
-        //     // remaining k
+        int k1 = kthLargest(root.right, k);
+        // System.out.println(root.data + " " + k + " " + k1);
+        
+        if(k1 < 0){
+            // suppose right subtree has total of 10 nodes
+            // value of k = 12
+            // thus, ans can't be found int right subtree
+            // the right subtree would hence return negative of 
+            // remaining k
             
-        //     // passing the abs(ans) - 1 to left as k would be definite ans
+            // passing the abs(ans) - 1 to left as k would be definite ans
             
-        //     k1 *= -1;
-        //     k1--;
-        // } else return k1;
+            k1 *= -1;
+            k1--;
+        } else return k1;
         
-        // if(k1 == 0) return root.data;
-        // else return kthLargest(root.left, k1);
+        if(k1 == 0) return root.data;
+        else return kthLargest(root.left, k1);
     }
 }
