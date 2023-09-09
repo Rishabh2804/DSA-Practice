@@ -20,14 +20,12 @@ class Solution {
         for(int i = 0; i < numCourses; ++i)
             adj.add(new ArrayList<>());
         
-        int[] depend = new int[numCourses];
 
         for(int[] edge : prerequisites){
             int u = edge[0];
             int v = edge[1];
             
             adj.get(u).add(v);
-            depend[u]++;
         }
         
         Boolean[] vis = new Boolean[numCourses];
