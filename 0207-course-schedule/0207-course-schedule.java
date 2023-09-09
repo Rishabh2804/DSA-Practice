@@ -1,39 +1,40 @@
 class Solution {
-    static final int UNSAFE = -1;
-    static final int UNVISITED = 0;
-    static final int SAFE = 1;
-
-    public int hasCycle(int i, ArrayList<ArrayList<Integer>> adj, int[] vis){
-        if(vis[i] != UNVISITED) return vis[i];
+    
+    private boolean canTakeCourse(int courseID, List<List<Integer>> adj, Boolean[] vis){
         
-        vis[i] = UNSAFE;
-        for(int neigh : adj.get(i)){
-            if(hasCycle(neigh, adj, vis) == UNSAFE)
-                return vis[i];
+        if(vis[courseID] != null) return !vis[courseID];
+        
+        vis[courseID] = true;        
+        for(int course : adj.get(courseID)){
+            
+            if(!canTakeCourse(course, adj, vis))
+                return false;
         }
         
-        return vis[i] = SAFE;
+        vis[courseID] = false;
+        return true;
     }
     
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        
-        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+        List<List<Integer>> adj = new ArrayList<>();
         for(int i = 0; i < numCourses; ++i)
             adj.add(new ArrayList<>());
         
-        for(int[] pr : prerequisites){
-            int u = pr[0];
-            int v = pr[1];
+        int[] depend = new int[numCourses];
+
+        for(int[] edge : prerequisites){
+            int u = edge[0];
+            int v = edge[1];
             
-            adj.get(v).add(u);
+            adj.get(u).add(v);
+            depend[u]++;
         }
         
-        int[] vis = new int[numCourses];
-                
+        Boolean[] vis = new Boolean[numCourses];
         for(int i = 0; i < numCourses; ++i){
-            vis[i] = hasCycle(i, adj, vis);
-            
-            if(vis[i] == UNSAFE) return false;
+            if(vis[i] == null){
+                if(!canTakeCourse(i, adj, vis)) return false;
+            }
         }
         
         return true;
