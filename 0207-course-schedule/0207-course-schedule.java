@@ -15,12 +15,11 @@ class Solution {
         return true;
     }
     
-    public boolean canFinish(int numCourses, int[][] prerequisites) {
+    public final boolean canFinish(int numCourses, int[][] prerequisites) {
         List<List<Integer>> adj = new ArrayList<>();
         for(int i = 0; i < numCourses; ++i)
             adj.add(new ArrayList<>());
         
-
         for(int[] edge : prerequisites){
             int u = edge[0];
             int v = edge[1];
