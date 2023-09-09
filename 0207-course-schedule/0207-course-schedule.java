@@ -1,6 +1,6 @@
 class Solution {
     
-    private boolean canTakeCourse(int courseID, List<List<Integer>> adj, Boolean[] vis){
+    private static final boolean canTakeCourse(int courseID, List<List<Integer>> adj, Boolean[] vis){
         
         if(vis[courseID] != null) return !vis[courseID];
         
