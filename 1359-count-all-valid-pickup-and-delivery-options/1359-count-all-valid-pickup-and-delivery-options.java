@@ -53,9 +53,35 @@ class Solution {
         return n * (n + 1) / 2;        
     }
     
-    public int countOrders(int n) {
+    // recursive
+    private int solve1(int n){
         if(n == 1) return 1;
         
         return (int)((1L * triangle(2 * n - 1) * countOrders(n - 1)) % MOD);
+    }
+    
+    // iterative + dp
+    private int solve2(int n){
+        if(n == 1) return 1;
+        
+        int[] triangles = new int[n];
+        for(int i = 0; i < n; ++i){
+            // i follows 0-based indexing, so it should be shifted by 1
+            // 2 * (i + 1) - 1 = 2 * i + 2 - 1
+            //                 = 2 * i + 1
+            triangles[i] = triangle(2 * i + 1);         
+        }
+        
+        int ans = 1;
+        for(int i : triangles)
+            ans = (int)((1L * ans * i) % MOD);
+        
+        return ans;
+    }
+    
+    public int countOrders(int n) {
+        if(n == 1) return 1;
+
+        return solve2(n);
     }
 }
