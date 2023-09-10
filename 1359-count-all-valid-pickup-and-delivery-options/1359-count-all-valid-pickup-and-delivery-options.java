@@ -99,7 +99,7 @@ class Solution {
         if(n == 1) return 1;
         
         // solve using different method each time 
-        // ;-)
+        // hehe
         SOLUTION = (SOLUTION + 1) % 3;        
         return switch(SOLUTION) {
             case 0 -> solve1(n);
