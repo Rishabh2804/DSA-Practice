@@ -1,4 +1,5 @@
 class Solution {
+    static int SOLUTION = 0;
     
     // The given problem can be solved easily by just 
     // visualising the problem in resursive manner
@@ -81,14 +82,14 @@ class Solution {
     
     // iterative + single variable
     private int solve3(int n){
-       if(n == 1) return 1;  
+        if(n == 1) return 1;  
         
-       long ans = 1L;
-       // It is simply
-       // [(1 * 2) / 2] * [(3 * 4) / 2] ...
-       // Π (2i * (2i - 1)) / 2  for i in 1..n
-       // Π (i * (2i - 1)) / 2 for i in 1..n        
-       for(int i = 1; i <= n; ++i)
+        // It is simply
+        // [(1 * 2) / 2] * [(3 * 4) / 2] ...
+        // Π (2i * (2i - 1)) / 2  for i in 1..n
+        // Π (i * (2i - 1)) / 2 for i in 1..n     
+        long ans = 1L;
+        for(int i = 1; i <= n; ++i)
            ans = (ans * i * (2 * i - 1)) % MOD;           
        
         return (int) ans;
@@ -96,7 +97,14 @@ class Solution {
     
     public int countOrders(int n) {
         if(n == 1) return 1;
-
-        return solve3(n);
+        
+        // solve using different method each time 
+        // ;-)
+        SOLUTION = (SOLUTION + 1) % 3;        
+        return switch(SOLUTION) {
+            case 0 -> solve1(n);
+            case 1 -> solve2(n);
+            default -> solve3(n);
+        };
     }
 }
