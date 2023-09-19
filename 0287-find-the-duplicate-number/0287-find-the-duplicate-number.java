@@ -91,7 +91,7 @@ class Solution {
         
         int ans = 0;
         
-        for(int bit = 0; bit < 31; ++bit){
+        for(int bit = 0; bit < 17; ++bit){
             int bitCount = 0;            
             int currBitMask = (1 << bit);
             
