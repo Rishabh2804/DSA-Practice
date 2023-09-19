@@ -97,10 +97,10 @@ class Solution {
             
             for(int i = 0; i < n; ++i){
                 // expected
-                if((i & currBitMask) > 0) bitCount ++;
+                bitCount += i & currBitMask;
                 
                 // in array
-                if((nums[i] & currBitMask) > 0) bitCount --;
+                bitCount -= nums[i] & currBitMask;
             }
             
             int currBit = 0;
