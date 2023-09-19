@@ -86,8 +86,32 @@ class Solution {
         return slow;
     }
     
+    private int bitManip(int[] nums){
+        int n = nums.length;
+        
+        int ans = 0;
+        
+        for(int bit = 0; bit < 31; ++bit){
+            int bitCount = 0;            
+            int currBitMask = (1 << bit);
+            
+            for(int i = 0; i < n; ++i){
+                // expected
+                if((i & currBitMask) > 0) bitCount ++;
+                
+                // in array
+                if((nums[i] & currBitMask) > 0) bitCount --;
+            }
+            
+            int currBit = 0;
+            if(bitCount < 0) 
+                ans |= currBitMask;            
+        }
+        
+        return ans;
+    }
     public int findDuplicate(int[] nums) {
         
-        return tortoise(nums);
+        return bitManip(nums);
     }
 }
