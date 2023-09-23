@@ -23,35 +23,40 @@ class GfG {
 
 class Solution {
     public int longestkSubstr(String s, int k) {
-        
-        int distinct = 0;
-        int[] freq = new int[26];
-        int maxLen = -1;
-        
-        int si = 0, ei = 0;
-        while(ei < s.length()){
-            int idx = s.charAt(ei) - 'a';
-            freq[idx]++;
-            
-            if(freq[idx] == 1) // new character
-                distinct++;
-            
-            while(si <= ei && distinct > k){
-                int idx2 = s.charAt(si) - 'a';
-                freq[idx2] --;
-                    
-                if(freq[idx2] == 0)
-                    distinct--;
-                    
-                si++;
+        HashMap<Character, Integer> map = new HashMap<>();
+        int i = -1;
+        int j = -1;
+        int ans =-1;
+        while (true) {
+            boolean f1 = false;
+            boolean f2 = false;
+            while (i < s.length() - 1 && map.size() <= k) {
+                i++;
+                char ch = s.charAt(i);
+                map.put(ch, map.getOrDefault(ch, 0) + 1);
+                if (map.size() == k) {
+                    ans = Math.max(ans, i - j);
+                }
+                f1 = true;
             }
-            
-            if(distinct == k)
-                maxLen = Math.max(maxLen, ei - si + 1);
-            
-            ei++;
+
+            // break hogya now lets release the first char
+            while (j < i && map.size() != k) {
+                j++;
+                char ch = s.charAt(j);
+                if (map.get(ch) == 1) {
+                    map.remove(ch);
+                } else {
+                    map.put(ch, map.getOrDefault(ch, 0) - 1);
+                }
+                f2 = true;
+
+            }
+            if (f1 == false && f2 == false) {
+                break;
+            }
         }
         
-        return maxLen;
+        return ans;
     }
 }
