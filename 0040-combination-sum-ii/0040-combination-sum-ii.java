@@ -1,10 +1,10 @@
 class Solution {
     
-    HashSet<List<Integer>> set;
+    List<List<Integer>> res;
     
     private void solve(int i, int target, List<int[]> list, List<Integer> combo){
         if(target == 0){
-            set.add(new ArrayList<>(combo));
+            res.add(new ArrayList<>(combo));
             return;
         }
         
@@ -13,7 +13,7 @@ class Solution {
         int[] curr = list.get(i);
         int val = curr[0];
         int freq = curr[1];
-                
+
         for(int k = 0; k <= freq; ++k){
             if(target < k * val) break;
             
@@ -26,7 +26,7 @@ class Solution {
     }
    
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {        
-        set = new HashSet<>();
+        res = new ArrayList<>();
         HashMap<Integer, Integer> freq = new HashMap<>();
         for(int i : candidates)
             freq.put(i, freq.getOrDefault(i, 0) + 1);
@@ -36,10 +36,6 @@ class Solution {
             list.add(new int[]{candidate, freq.get(candidate)});
         
         solve(0, target, list, new ArrayList<>());
-        
-        List<List<Integer>> res = new ArrayList<>();
-        for(List<Integer> combo : set)
-            res.add(combo);
         
         return res;
     }
