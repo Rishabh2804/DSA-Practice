@@ -1,5 +1,7 @@
 class Solution {
     public boolean winnerOfGame(String colors) {
+        if(colors.length() < 3) return false;
+        
         int alice = 0;
         int bob = 0;
         
