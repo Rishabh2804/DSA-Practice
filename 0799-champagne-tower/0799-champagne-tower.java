@@ -12,20 +12,14 @@ class Solution {
                 double extra = row[j] - 1;
                 row[j] = Math.min(row[j], 1);
                 
-                System.out.print(row[j] + " ");
-
                 if(extra <= 0 || i == query_row) continue;
 
                 double share = extra / 2.0f;
                 tower.get(i + 1)[j] += share;
                 tower.get(i + 1)[j + 1] += share;                
             }
-            
-            System.out.println();
         }
         
-        System.out.println();
-
         return tower.get(query_row)[query_glass];
     }
 }
