@@ -17,7 +17,6 @@ class Solution {
             int dotProd = solve(si1 + 1, i + 1, nums1, nums2, dp);
             
             int currAns = Math.max(product, product + dotProd);
-            // currAns = Math.max(currAns, product + dotProd);
             
             take = Math.max(take, currAns);
         }
