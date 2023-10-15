@@ -64,7 +64,7 @@ class Solution {
     *   Space Complexity --> O(n * steps)
     **/
     private int solve3(int n, int steps){
-        int[][] dp = new int[steps + 1][n];
+        Integer[][] dp = new Integer[steps + 1][n];
         dp[0][0] = 1;
         
         int left;
@@ -83,28 +83,31 @@ class Solution {
             * => Conversely, if we have `steps` number of steps,
             *    farthest we can reach from index 0 is 
             *      (0 + steps) = steps
+            * 
+            *  This would reduce time & space complexity to half times the original.
             **/
             
             int lim = Math.min(step, n - 1);
             for(int i = 0; i <= lim; ++i){ 
                 
                 left = (i > 0) ? dp[step - 1][i - 1] : 0;
-                stay = dp[step - 1][i];
-                right = (i < n - 1) ? dp[step - 1][i + 1] : 0;
+                stay = (i < lim) ? dp[step - 1][i] : 0;
+                right = (i < lim - 1) ? dp[step - 1][i + 1] : 0;
                 
                 dp[step][i] = ADD(stay, ADD(left, right));
             }
         }
         
-        // Back to pos 0, after steps = `steps`
+        // Back to pos 0, after steps == `steps`
         return dp[steps][0];
     }
     
     public int numWays(int steps, int arrLen) {
-        int n = Math.min(arrLen, MAX_EFFECTIVE_SIZE);
+        int effectiveSize = 1 + steps / 2;
+        int n = Math.min(arrLen, effectiveSize);
         
         // return solve1(0, steps, n);
-        // return solve2(0, steps, n, new Integer[n][steps + 1]);
-        return solve3(n, steps);
+        return solve2(0, steps, n, new Integer[n][steps + 1]);
+        // return solve3(n, steps);
     }
 }
