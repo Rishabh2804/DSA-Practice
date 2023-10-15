@@ -25,22 +25,86 @@ class Solution {
         return ((num1 % MOD) + (num2 % MOD)) % MOD;
     }
     
-    private int solve(int i, int steps, int n, Integer[][] dp){
+    /** Approach 1 : Recursive (of course TLE \U0001f605)
+    *   Time Complexity --> O(3 ^ steps) 
+    *   Space Complexity --> O(3 ^ steps) (Stack space)
+    **/
+    private int solve1(int i, int steps, int n){
+        if(i < 0 || i >= n) return 0;
+        
+        if(steps <= 0) return (i == 0) ? 1 : 0;
+        
+        int stay = solve1(i, steps - 1, n);
+        int left = solve1(i - 1, steps - 1, n);
+        int right = solve1(i + 1, steps - 1, n);
+        
+        return ADD(stay, ADD(left, right));
+    }
+    
+    /** Approach 2 : Memoization
+    *   Time Complexity --> O(n * steps) 
+    *   Space Complexity --> O(n * steps) + O(steps) (Stack space)
+    **/
+    private int solve2(int i, int steps, int n, Integer[][] dp){
         if(i < 0 || i >= n) return 0;
         
         if(steps <= 0) return (i == 0) ? 1 : 0;
         
         if(dp[i][steps] != null) return dp[i][steps];
         
-        int stay = solve(i, steps - 1, n, dp);
-        int left = solve(i - 1, steps - 1, n, dp);
-        int right = solve(i + 1, steps - 1, n, dp);
+        int stay = solve2(i, steps - 1, n, dp);
+        int left = solve2(i - 1, steps - 1, n, dp);
+        int right = solve2(i + 1, steps - 1, n, dp);
         
         return dp[i][steps] = ADD(stay, ADD(left, right));
     }
     
+    /** Approach 3 : Tabulation
+    *   Time Complexity --> O(n * steps) 
+    *   Space Complexity --> O(n * steps)
+    **/
+    private int solve3(int n, int steps){
+        int[][] dp = new int[steps + 1][n];
+        dp[0][0] = 1;
+        
+        int left;
+        int stay;
+        int right;
+        
+        for(int step = 1; step <= steps; ++step){
+            
+            /**  If we are currently at pos j,
+            *    we would require atleast 
+            *    (j - i) steps to reach pos i
+            *
+            * => In other words, to return to pos from pos i
+            *    we need atleast i steps
+            * 
+            * => Conversely, if we have `steps` number of steps,
+            *    farthest we can reach from index 0 is 
+            *      (0 + steps) = steps
+            **/
+            
+            int lim = Math.min(step, n - 1);
+            for(int i = 0; i <= lim; ++i){ 
+                
+                left = (i > 0) ? dp[step - 1][i - 1] : 0;
+                stay = dp[step - 1][i];
+                right = (i < n - 1) ? dp[step - 1][i + 1] : 0;
+                
+                dp[step][i] = ADD(stay, ADD(left, right));
+            }
+        }
+        
+        // Back to pos 0, after steps = `steps`
+        return dp[steps][0];
+    }
+    
     public int numWays(int steps, int arrLen) {
         int n = Math.min(arrLen, MAX_EFFECTIVE_SIZE);
-        return solve(0, steps, n, new Integer[n][steps + 1]);
+        
+        // return solve1(0, steps, n);
+        // return solve2(0, steps, n, new Integer[n][steps + 1]);
+        return solve3(n, steps);
     }
 }
