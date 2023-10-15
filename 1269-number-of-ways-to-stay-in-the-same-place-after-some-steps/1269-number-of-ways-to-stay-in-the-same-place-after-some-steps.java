@@ -1,24 +1,6 @@
 class Solution {
     
     private static final int MAX_STEPS = 500;
-    /**
-    *   Steps count : 
-    *      arr[i] --> arr[i + 1] == 1
-    *      arr[i] <-- arr[i + 1] == 1
-    *   
-    *   => Thus, a complete round-about path 
-    *         arr[i] -->  arr[j] 
-    *      takes 2 * (j - i) steps
-    *   
-    *   => For threshold limit of [MAX_STEPS] steps, 
-    *      furthest point reachable from index i is => i + MAX_STEPS / 2
-    *   => From start point 0, furthest point reachable would be 
-    *           (0 + MAX_STEPS) ==> MAX_STEPS / 2
-    *   => Maximum feasible length of array = (ei - si + 1) ==> MAX_STEPS / 2 + 1
-    *   => MAX_EFFECTIVE_SIZE = 1 + MAX_STEPS / 2
-    **/
-    private static final int MAX_EFFECTIVE_SIZE = 1 + MAX_STEPS / 2;
-    
     static final int MOD = 1000000007;
     
     private static final int ADD(int num1, int num2){
@@ -103,8 +85,27 @@ class Solution {
     }
     
     public int numWays(int steps, int arrLen) {
-        int effectiveSize = 1 + steps / 2;
-        int n = Math.min(arrLen, effectiveSize);
+        /**
+        *   Steps count : 
+        *      arr[i] --> arr[i + 1] == 1
+        *      arr[i] <-- arr[i + 1] == 1
+        *   
+        *   => Thus, a complete round-about path 
+        *         arr[i] -->  arr[j] 
+        *      takes 2 * (j - i) steps
+        *   
+        *   => For threshold limit of [MAX_STEPS] steps, 
+        *      furthest point reachable from index i is => i + MAX_STEPS / 2
+        *
+        *   => For a given step count == STEPS, 
+        *   => From start point 0, furthest point reachable would be 
+        *           (0 + STEPS) ==> STEPS / 2
+        *
+        *   => Maximum feasible length of array = (ei - si + 1) ==> STEPS / 2 + 1
+        *   ==> effectiveSize = 1 + STEPS / 2
+        **/
+        int reachableLength = 1 + steps / 2;
+        int n = Math.min(arrLen, reachableLength);
         
         // return solve1(0, steps, n);
         return solve2(0, steps, n, new Integer[n][steps + 1]);
