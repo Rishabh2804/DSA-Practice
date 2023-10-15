@@ -46,7 +46,7 @@ class Solution {
     *   Space Complexity --> O(n * steps)
     **/
     private int solve3(int n, int steps){
-        Integer[][] dp = new Integer[steps + 1][n];
+        int[][] dp = new int[steps + 1][n];
         dp[0][0] = 1;
         
         int left;
@@ -66,15 +66,15 @@ class Solution {
             *    farthest we can reach from index 0 is 
             *      (0 + steps) = steps
             * 
-            *  This would reduce time & space complexity to half times the original.
+            *  This would reduce time & space complexity to half of original.
             **/
             
             int lim = Math.min(step, n - 1);
             for(int i = 0; i <= lim; ++i){ 
                 
                 left = (i > 0) ? dp[step - 1][i - 1] : 0;
-                stay = (i < lim) ? dp[step - 1][i] : 0;
-                right = (i < lim - 1) ? dp[step - 1][i + 1] : 0;
+                stay = dp[step - 1][i];
+                right = (i < n - 1) ? dp[step - 1][i + 1] : 0;
                 
                 dp[step][i] = ADD(stay, ADD(left, right));
             }
@@ -108,7 +108,7 @@ class Solution {
         int n = Math.min(arrLen, reachableLength);
         
         // return solve1(0, steps, n);
-        return solve2(0, steps, n, new Integer[n][steps + 1]);
-        // return solve3(n, steps);
+        // return solve2(0, steps, n, new Integer[n][steps + 1]);
+        return solve3(n, steps);
     }
 }
