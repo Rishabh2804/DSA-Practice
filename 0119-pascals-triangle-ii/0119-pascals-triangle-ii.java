@@ -1,6 +1,6 @@
 class Solution {
     
-    void pascalise(ArrayList<Integer> row){
+    static final void pascalise(ArrayList<Integer> row){
         row.add(0);
         for(int i = row.size() - 1; i > 0; --i)
             row.set(i, row.get(i) + row.get(i - 1));
