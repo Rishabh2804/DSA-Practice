@@ -6,7 +6,7 @@ class Solution {
     }
     
     private static final int MULT(int a, int b){
-        return (int)((1l * (a % MOD) * (b % MOD)) % MOD);
+        return (int)((1l * a * b) % MOD);
     }
     
     public int numFactoredBinaryTrees(int[] arr) {
