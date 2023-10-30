@@ -9,14 +9,13 @@ class Solution {
     }
     
     public int[] sortByBits(int[] arr) {
-        int[] bits = new int[arr.length];
         for(int i = 0; i < arr.length; i++)
-            bits[i] = countBits(arr[i]) * 100000 + arr[i];
+            arr[i] += countBits(arr[i]) * 100000;
         
-        Arrays.sort(bits);
+        Arrays.sort(arr);
         for(int i = 0; i < arr.length; i++)
-            bits[i] = bits[i] % 100000;
+            arr[i] %= 100000;
         
-        return bits;
+        return arr;
     }
 }
