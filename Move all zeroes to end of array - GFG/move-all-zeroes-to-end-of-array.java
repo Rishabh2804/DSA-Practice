@@ -35,7 +35,6 @@ public class Main {
 class Solution {
     void pushZerosToEnd(int[] arr, int n) {
         
-        int countZero = 0;
         int si = 0;
         for(int i = 0; i < n; ++i){
             if(arr[i] == 0) continue;
