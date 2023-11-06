@@ -39,6 +39,6 @@ class Solution {
     }
     
     public boolean stoneGame(int[] piles) {
-        return solve1(piles);
+        return solve2(piles);
     }
 }
