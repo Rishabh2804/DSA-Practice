@@ -18,7 +18,7 @@ class Solution {
         return dp[si][ei] = total - Math.min(start, end);
     }
     
-    public boolean stoneGame(int[] piles) {
+    private boolean solve1(int[] piles){
         int n = piles.length;
         
         sum = new int[n];
@@ -32,5 +32,13 @@ class Solution {
         int aliceScore = solve(0, n - 1, dp);
         
         return 2 * aliceScore > total;        
+    }
+    
+    private boolean solve2(int[] piles){
+        return true;
+    }
+    
+    public boolean stoneGame(int[] piles) {
+        return solve1(piles);
     }
 }
