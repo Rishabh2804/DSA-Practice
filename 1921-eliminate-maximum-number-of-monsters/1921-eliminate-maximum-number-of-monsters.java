@@ -1,15 +1,17 @@
 class Solution {
+    private int ceil(int a, int b){
+        return (a + b - 1) / b;
+    }
+    
     public int eliminateMaximum(int[] dist, int[] speed) {
         int n = dist.length;        
-        Integer[] monsters = new Integer[n];
-        for(int i = 0; i < n; ++i) 
-            monsters[i] = i;
+        for(int i = 0; i < n; ++i)
+            dist[i] = ceil(dist[i], speed[i]);
         
-        Arrays.sort(monsters, (a, b) -> dist[a] * speed[b] - dist[b] * speed[a]);
+        Arrays.sort(dist);
         
         int time = 0;
-        for(Integer monster : monsters){
-            int eta = (dist[monster] + speed[monster] - 1) /  speed[monster];
+        for(int eta : dist){
             if(time >= eta) return time;
             else time++;
         }
