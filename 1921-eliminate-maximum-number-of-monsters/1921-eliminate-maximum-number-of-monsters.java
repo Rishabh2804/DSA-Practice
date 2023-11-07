@@ -7,17 +7,13 @@ class Solution {
         
         Arrays.sort(monsters, (a, b) -> dist[a] * speed[b] - dist[b] * speed[a]);
         
-        int eliminateCount = 0;
         int time = 0;
         for(Integer monster : monsters){
             int eta = (dist[monster] + speed[monster] - 1) /  speed[monster];
-            if(time >= eta) return eliminateCount;
-            else {
-                time++;
-                eliminateCount++;
-            }
+            if(time >= eta) return time;
+            else time++;
         }
         
-        return eliminateCount;
+        return time;
     }
 }
