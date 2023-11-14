@@ -11,15 +11,13 @@ class Solution {
     }
     
     public int countPalindromicSubsequence(String s) {
-        
         int n = s.length();
-        
-        int count = 0;
         
         int[][] occurences = new int[26][2];        
         for(int i = 0; i < 26; ++i)
             occurences[i] = new int[]{n, -1};
         
+        int count = 0;
         for(int i = 0; i < n; ++i){
             int idx = s.charAt(i) - 'a';
             
@@ -27,11 +25,9 @@ class Solution {
             occurences[idx][EI] = Math.max(occurences[idx][EI], i);            
         }
         
-        for(int[] occurence : occurences){
-            System.out.println(occurence[SI] + " " + occurence[EI]);
-            
+        for(int[] occurence : occurences)
             count += countDistinct(occurence[SI] + 1, occurence[EI], s);
-        }
+        
         return count;
     }
 }
