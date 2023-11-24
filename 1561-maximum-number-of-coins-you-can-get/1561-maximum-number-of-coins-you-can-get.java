@@ -8,5 +8,3 @@ class Solution {
         return coins;
     }
 }
-
-// 8 7 4 2 2 1
