@@ -1,16 +1,23 @@
 class Solution {
     private static final int MOD = 1000000007;
     
+    private static final int[][] keyPad = {{1, 2, 3},
+                                           {4, 5, 6},
+                                           {7, 8, 9},
+                                           {-1, 0, -1}};
+
     private static final int[] xDir = {-2, -2, -1, -1, 1,  1,  2, 2};
     private static final int[] yDir = {-1,  1, -2,  2, 2, -2, -1, 1};
     
-    private int getKey(int x, int y){        
-        if(x < 1 || x > 3 || y < 1) return -1;
+    private int getKey(int x, int y){              
+        if(x < 1 || x > 3 || y < 1 || y > 4) return -1;
         
-        if(y > 3){
-            if(x == 2 && y == 4) return 0;
-            else return -1;
-        } else return x + 3 * (y - 1);
+        return keyPad[y - 1][x - 1];
+        
+        // if(y > 3){
+        //     if(x == 2 && y == 4) return 0;
+        //     else return -1;
+        // } else return x + 3 * (y - 1);
     }
     
     private int dial(int x, int y, int n, int[][] dp){ 
