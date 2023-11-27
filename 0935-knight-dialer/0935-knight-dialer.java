@@ -11,13 +11,10 @@ class Solution {
     
     private int getKey(int x, int y){              
         if(x < 1 || x > 3 || y < 1 || y > 4) return -1;
-        
-        return keyPad[y - 1][x - 1];
-        
-        // if(y > 3){
-        //     if(x == 2 && y == 4) return 0;
-        //     else return -1;
-        // } else return x + 3 * (y - 1);
+                
+        int key = x + 3 * (y - 1);
+        if(key > 9) return (key == 11) ? 0 : -1; // 10, 11, 12  --> *, 0, #
+        else return key;
     }
     
     private int dial(int x, int y, int n, int[][] dp){ 
