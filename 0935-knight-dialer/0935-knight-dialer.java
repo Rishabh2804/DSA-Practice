@@ -1,10 +1,5 @@
 class Solution {
     private static final int MOD = 1000000007;
-    
-    private static final int[][] keyPad = {{1, 2, 3},
-                                           {4, 5, 6},
-                                           {7, 8, 9},
-                                           {-1, 0, -1}};
 
     private static final int[] xDir = {-2, -2, -1, -1, 1,  1,  2, 2};
     private static final int[] yDir = {-1,  1, -2,  2, 2, -2, -1, 1};
