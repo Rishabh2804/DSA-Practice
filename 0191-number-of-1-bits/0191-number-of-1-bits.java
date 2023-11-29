@@ -23,6 +23,7 @@ public class Solution {
     }
     
     public int hammingWeight(int n) {
-        return solve2(n);
+        if(n % 2 == 0) return solve1(n);
+        else return solve2(n);
     }
 }
