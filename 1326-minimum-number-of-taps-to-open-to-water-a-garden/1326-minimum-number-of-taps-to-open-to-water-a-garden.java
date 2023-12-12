@@ -37,15 +37,18 @@ class Solution {
         else return minTaps;        
     }
     
+    
+    // Greedy Solution
+    // TC : O(n)
+    // SC : O(n)
     private int solve2(int[][] taps){
         
         int n = taps.length;
         
-        int count = 0;
-        
         int gardenEnd = n - 1;
         int covered = 0;
         
+        int count = 0;        
         int i = 0;    
         while(i < n){
             
@@ -90,7 +93,6 @@ class Solution {
             else return a[SI] - b[SI];
         });
         
-        print(taps);
         return solve2(taps);
     }
 }
