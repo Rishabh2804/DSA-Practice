@@ -14,7 +14,17 @@ class Solution {
         return maxProd;
     }
     
+    // TC : O(nlog(n))
+    // SC : O(1)
+    private int solve2(int[] nums){
+        Arrays.sort(nums);
+        
+        int n = nums.length;
+        
+        return (nums[n - 1] - 1) * (nums[n - 2] - 1);
+    }
+    
     public int maxProduct(int[] nums) {
-        return solve1(nums);
+        return solve2(nums);
     }
 }
