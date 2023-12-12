@@ -24,7 +24,24 @@ class Solution {
         return (nums[n - 1] - 1) * (nums[n - 2] - 1);
     }
     
+    // TC : O(n)
+    // SC : O(1)
+    private int solve3(int[] nums){
+        int largest = 0;
+        int largest2 = 0;
+        
+        for(int num : nums){
+            if(num > largest) {
+                largest2 = largest;
+                largest = num;                    
+            } else if(num > largest2)
+                largest2 = num;
+        }
+        
+        return (largest - 1) * (largest2 - 1);
+    }
+    
     public int maxProduct(int[] nums) {
-        return solve2(nums);
+        return solve3(nums);
     }
 }
