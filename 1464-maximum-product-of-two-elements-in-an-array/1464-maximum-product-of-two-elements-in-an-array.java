@@ -1,5 +1,8 @@
 class Solution {
-    public int maxProduct(int[] nums) {
+    
+    // TC : O(n*n)
+    // SC : O(1)
+    private int solve1(int[] nums){
         int n = nums.length;
         
         int maxProd = 0;
@@ -9,5 +12,9 @@ class Solution {
         }
         
         return maxProd;
+    }
+    
+    public int maxProduct(int[] nums) {
+        return solve1(nums);
     }
 }
