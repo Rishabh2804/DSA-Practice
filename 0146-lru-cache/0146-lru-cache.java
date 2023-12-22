@@ -28,15 +28,6 @@ class LRUCache {
         nodes = new HashMap<>();
     }
     
-    private void print(){
-//         Node temp = head;
-//         while(temp != null){
-//             System.out.print(temp);
-//             temp = temp.next;
-//         }
-        
-//         System.out.println();
-    }
     
     private void add(int key, Node node){
         if(head == null){
@@ -55,6 +46,7 @@ class LRUCache {
     private Node remove(int key){
         
         Node node = nodes.get(key);
+        
         if(head.key == node.key) head = head.next;
         else if(tail.key == node.key) tail = tail.prev;
         
@@ -75,8 +67,6 @@ class LRUCache {
         Node node = remove(key);
         add(key, node);
         
-        print();
-        
         return nodes.get(key).value;
     }
     
@@ -86,8 +76,6 @@ class LRUCache {
             node.value = value;
             
             add(key, node);
-            
-            print();
             return;
         }
 
@@ -100,8 +88,6 @@ class LRUCache {
             add(key, node); // update map with node associated with new key            
         } else 
             add(key, new Node(key, value));                
-        
-        print();
     }
 }
 
