@@ -1,87 +1,113 @@
 class LRUCache {
-    
-    static class DListNode {
+
+    static class Node {
         int key;
-        int val;
-        DListNode prev;
-        DListNode next;
+        int value;
+
+        Node prev;
+        Node next;            
         
-        public DListNode(int key, int val){
+        public Node(int key, int value){
             this.key = key;
-            this.val = val;
+            this.value = value;
+        }
+        
+        @Override
+        public String toString(){
+            return "{" + this.key + " : " + this.value + "} -->";
         }
     }
-    
-    int capacity;
-    DListNode head;
-    DListNode tail;
 
-    HashMap<Integer, DListNode> db;
+    int capacity;
+    
+    Node head, tail;
+    HashMap<Integer, Node> nodes;
     
     public LRUCache(int capacity) {
         this.capacity = capacity;
-        db = new HashMap<>();
+        nodes = new HashMap<>();
     }
     
-    private void moveToLast(int key){
-        DListNode node = db.get(key);
-
-        // remove it from current position
-        if(node == tail){
-            // already at required position
-            return;
-        } else if(node == head){
-            node.next.prev = null;
-            head = node.next;                
-        } else {
-            node.prev.next = node.next;
-            node.next.prev = node.prev;                
+    private void print(){
+//         Node temp = head;
+//         while(temp != null){
+//             System.out.print(temp);
+//             temp = temp.next;
+//         }
+        
+//         System.out.println();
+    }
+    
+    private void add(int key, Node node){
+        if(head == null){
+            head = node;
+            tail = node;
+        } else{
+            tail.next = node;
+            node.prev = tail;
+            
+            tail = node;
         }
         
-        // place it at the end (most recent)
+        nodes.put(key, node);                        
+    }
+    
+    private Node remove(int key){
+        
+        Node node = nodes.get(key);
+        if(head.key == node.key) head = head.next;
+        else if(tail.key == node.key) tail = tail.prev;
+        
+        if(node.prev != null) node.prev.next = node.next;
+        if(node.next != null) node.next.prev = node.prev;
+        
         node.next = null;
-        node.prev = tail;
-        tail.next = node;
-        tail = node;            
+        node.prev = null;        
+        
+        nodes.remove(key);
+        return node;
     }
     
     public int get(int key) {
-        if(db.containsKey(key)) {
-            moveToLast(key);
-            return db.get(key).val;
-        }
-        else return -1;
+        if(!nodes.containsKey(key)) return -1;
+        
+        // remove from mid and place at top
+        Node node = remove(key);
+        add(key, node);
+        
+        print();
+        
+        return nodes.get(key).value;
     }
     
     public void put(int key, int value) {
-        if(db.containsKey(key)){
-            moveToLast(key);            
-            db.get(key).val = value;
-        } else {
+        if(nodes.containsKey(key)){
+            Node node = remove(key);
+            node.value = value;
             
-            if(db.size() < capacity){   
-                if(tail == null){
-                    head = new DListNode(key, value);
-                    tail = head;
-                } else {
-                    tail.next = new DListNode(key, value);
-                    tail.next.prev = tail;
-                    tail = tail.next;
-                }
-            } else {
-                // instead of creating new node, 
-                // we can recycle the node to be removed
-                
-                moveToLast(head.key);
-                
-                // removing old value from db
-                db.remove(tail.key);
-                tail.key = key;
-                tail.val = value;
-            }
+            add(key, node);
             
-            db.put(key, tail);
+            print();
+            return;
         }
+
+        if(nodes.size() >= capacity){
+            Node node = remove(head.key); // remove old key from map
+            
+            node.key = key;
+            node.value = value;                        
+            
+            add(key, node); // update map with node associated with new key            
+        } else 
+            add(key, new Node(key, value));                
         
+        print();
     }
 }
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
