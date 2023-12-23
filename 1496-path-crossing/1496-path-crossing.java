@@ -1,6 +1,6 @@
 class Solution {
     
-    static final int BASE = 10001;
+    static final int BASE = 10000;
     
     public boolean isPathCrossing(String path) {
         int vertical = 0;
