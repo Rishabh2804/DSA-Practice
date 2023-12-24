@@ -6,6 +6,7 @@ class Solution {
     static final boolean TYPE_0 = true;  // starting with 0
     static final boolean TYPE_1 = false; // starting with 1
     
+    // checking both ways by flipping
     private int countOp(boolean type, String s){
         int count = 0;
         
@@ -21,7 +22,35 @@ class Solution {
         return count;
     }
     
+    
+    // checking ways by frequency count of 1s and 0s
+    private int countFreq(String s){
+        int n = s.length();
+        
+        int odds = (n + 1) / 2;
+        int eves = n - odds;
+                
+        int[] freq_odd = new int[2];
+        int[] freq_even = new int[2];
+        
+        for(int i = 0; i < n; ++i){
+            int curr = s.charAt(i) - '0';
+            
+            if(i % 2 == 0) freq_even[curr]++;
+            else freq_odd[curr]++;
+        }
+        
+        // 01010101
+        int way1 = freq_odd[0] + freq_even[1];
+        
+        // 10101010
+        int way2 = freq_odd[1] + freq_even[0];
+        
+        return Math.min(way1, way2);
+    }
+    
     public int minOperations(String s) {
-        return Math.min(countOp(TYPE_0, s), countOp(TYPE_1, s));    
+        return countFreq(s);
+        //return Math.min(countOp(TYPE_0, s), countOp(TYPE_1, s));    
     }
 }
