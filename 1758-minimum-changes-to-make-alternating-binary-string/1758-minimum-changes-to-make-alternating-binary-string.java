@@ -26,10 +26,7 @@ class Solution {
     // checking ways by frequency count of 1s and 0s
     private int countFreq(String s){
         int n = s.length();
-        
-        int odds = (n + 1) / 2;
-        int eves = n - odds;
-                
+                  
         int[] freq_odd = new int[2];
         int[] freq_even = new int[2];
         
