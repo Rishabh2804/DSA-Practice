@@ -17,6 +17,7 @@ class Solution {
                 ans += sum;
             }
         }
+        
         return (int)ans;        
     }
 }
