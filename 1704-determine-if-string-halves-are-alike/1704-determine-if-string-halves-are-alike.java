@@ -1,4 +1,12 @@
 class Solution {
+    
+    static final String VOWELS = "AEIOUaeiou";
+    
+    
+    private final int isVowel(char c){
+        return (VOWELS.indexOf(c) != -1) ? 1 : 0;
+    }
+    
     public boolean halvesAreAlike(String s) {
         int vowelCount = 0;
         
@@ -11,19 +19,4 @@ class Solution {
         return vowelCount == 0;
     }
     
-    public int isVowel(char c){
-        switch(c){        
-            case 'a' :    
-            case 'e' : 
-            case 'i' : 
-            case 'o' : 
-            case 'u' : 
-            case 'A' :    
-            case 'E' : 
-            case 'I' : 
-            case 'O' : 
-            case 'U' : return 1;                      
-            default  : return 0; 
-        }
-    }
 }
