@@ -1,32 +1,34 @@
 class Solution {
-    public int evalRPN(String[] tokens) {
-
-        Stack<Integer> st = new Stack<>();
-        for (String token : tokens) {
-            if (isNumber(token.charAt(token.length() - 1))){
-                st.push(Integer.parseInt(token));
-            }
-            else {
-                int b = st.pop();
-                int a = st.pop();
-                st.push(evaluate(a, b, token.charAt(0)));
-            }
-        }
     
-        return st.pop();
+    private static final String OPERATORS = "+-*/";
+    private static final boolean isOperator(String token){
+        return OPERATORS.indexOf(token) >= 0;
     }
-
-    public int evaluate(int a, int b, char c) {
-        return switch (c) {
-            case '+' -> a + b;
-            case '-' -> a - b;
-            case '*' -> a * b;
-            case '/' -> a / b;
-            default -> 0;
+    
+    private static final int eval(int a, int b, String op){
+        return switch(op){
+            case "+" : yield a + b;
+            case "-" : yield a - b;
+            case "*" : yield a * b;
+            case "/" : yield a / b;
+            default : yield 0;
         };
-    }
-
-    public boolean isNumber(char c){
-        return '0' <= c && c <= '9';
+    }    
+    
+    public int evalRPN(String[] tokens) {
+        
+        Stack<Integer> evaluator = new Stack<>();
+        for(String token : tokens){
+            if(isOperator(token)){
+                int b = evaluator.pop();
+                int a = evaluator.pop();
+                
+                int res = eval(a, b, token);
+                
+                evaluator.add(res);
+            } else evaluator.add(Integer.parseInt(token));
+        }
+        
+        return evaluator.pop();
     }
 }
