@@ -7,11 +7,11 @@ class Solution {
     
     private static final int eval(int a, int b, String op){
         return switch(op){
-            case "+" : yield a + b;
-            case "-" : yield a - b;
-            case "*" : yield a * b;
-            case "/" : yield a / b;
-            default : yield 0;
+            case "+" -> a + b;
+            case "-" -> a - b;
+            case "*" -> a * b;
+            case "/" -> a / b;
+            default -> 0;
         };
     }    
     
