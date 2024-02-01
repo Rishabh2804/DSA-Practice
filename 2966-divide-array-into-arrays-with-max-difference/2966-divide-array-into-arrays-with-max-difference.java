@@ -7,8 +7,6 @@ class Solution {
     public int[][] divideArray(int[] nums, int k) {
         Arrays.sort(nums);
         
-        print(nums);
-        
         int n = nums.length;
         int[][] res = new int[n / 3][3];
         
