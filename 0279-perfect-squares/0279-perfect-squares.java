@@ -1,29 +1,30 @@
 class Solution {
-    public int numSquares(int n) {
-        if (isPerfectSquare(n))
-            return 1;
-
-        int[] dp = new int[n + 1];        
-        for (int i = 1; i <= n; ++i) {
-            if (isPerfectSquare(i))
-                dp[i] = 1;
-            else {       
-                dp[i] = 4; // can't be greater than 4
-                for (int j = 1; j * j <= i; ++j)
-                    dp[i] = Math.min(dp[i], 1 + dp[i - j * j]);
+    
+    static final int MAX_SIZE = 101;
+    static final int[] SQUARES;
+    static final int[] MIN_SQUARES;
+    
+    static {
+        SQUARES = new int[MAX_SIZE];        
+        for(int i = 1; i < MAX_SIZE; ++i)
+            SQUARES[i] = SQUARES[i - 1] + 2 * i - 1;     
+        
+        
+        MIN_SQUARES = new int[MAX_SIZE * MAX_SIZE];
+        for(int i = 1; i < MIN_SQUARES.length; ++i){            
+            int minCount = 4;
+            for(int j = 1; j < MAX_SIZE; ++j){
+                int square = SQUARES[j];
+                if(square > i) break;
+                
+                minCount = Math.min(minCount, 1 + MIN_SQUARES[i - square]);
             }
             
-            // System.out.print(dp[i] + " ");
+            MIN_SQUARES[i] = minCount;
         }
-        
-        // System.out.println();
-        
-        return dp[n];
     }
-
-    public boolean isPerfectSquare(int n) {
-        int sqrt = (int) Math.sqrt(n);
-
-        return (sqrt * sqrt) == n;
+    
+    public int numSquares(int n) {
+        return MIN_SQUARES[n];
     }
 }
