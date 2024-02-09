@@ -3,9 +3,6 @@ class Solution {
         int n = nums.length;
         Arrays.sort(nums);        
         
-        int[] dp = new int[n];
-        // Arrays.fill(dp, 1);
-        
         ArrayList<ArrayList<Integer>> allSets = new ArrayList<>();
         
         int maxLen = 1;
