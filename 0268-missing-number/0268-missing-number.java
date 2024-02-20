@@ -1,5 +1,5 @@
 class Solution {
-    
+
     static final int xorN(int n){
         return switch(n % 4){
             case 0 -> n;
