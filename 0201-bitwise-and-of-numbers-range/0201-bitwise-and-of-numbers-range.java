@@ -7,9 +7,9 @@ class Solution {
         int rangeLen = right - left + 1;
         
         int res = left;
-        int maxLen = 1;
         
         int currBit = 1;
+        int maxLen = currBit;
         for(int i = 0; i < 31; ++i){
             
             int startBit = currBit & left;
@@ -21,8 +21,8 @@ class Solution {
                 res = res & complement;
             }
             
-            maxLen = (maxLen << 1);
             currBit <<= 1;
+            maxLen = currBit;
         }
         
         return res;
