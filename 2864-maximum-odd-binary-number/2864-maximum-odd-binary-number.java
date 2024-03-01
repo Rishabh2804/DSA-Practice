@@ -11,10 +11,10 @@ class Solution {
             
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < count1 - 1; ++i)
-            sb.append("1");
+            sb.append('1');
         
         for(int i = 0; i < count0; ++i)
-            sb.append("0");
+            sb.append('0');
         
         sb.append('1');
         
