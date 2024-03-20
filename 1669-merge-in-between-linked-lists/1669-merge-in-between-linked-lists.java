@@ -33,10 +33,10 @@ class Solution {
         while(tail2 != null && tail2.next != null) 
             tail2 = tail2.next;
         
-        if(tail2 == null) {
-            tail1.next = end;
-            return list1;
-        }
+        // if(tail2 == null) {
+        //     tail1.next = end;
+        //     return list1;
+        // }
         
         tail1.next = list2;
         tail2.next = end;
