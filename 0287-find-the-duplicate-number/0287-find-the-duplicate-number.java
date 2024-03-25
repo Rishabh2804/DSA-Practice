@@ -86,6 +86,8 @@ class Solution {
         return slow;
     }
     
+    // T = O(32n)
+    // S = O(1)
     private int bitManip(int[] nums){
         int n = nums.length;
         
@@ -110,6 +112,7 @@ class Solution {
         
         return ans;
     }
+    
     public int findDuplicate(int[] nums) {
         
         return bitManip(nums);
