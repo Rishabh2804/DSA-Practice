@@ -23,9 +23,9 @@ class Solution {
     public int sumOfLeftLeaves(TreeNode root) {
         if(root == null) return 0;
         
-        int sum = sumOfLeftLeaves(root.left);
+        int sum = sumOfLeftLeaves(root.left) + sumOfLeftLeaves(root.right);
         if(isLeaf(root.left)) sum += root.left.val;
-        if(!isLeaf(root.right)) sum += sumOfLeftLeaves(root.right);
+        // if(!isLeaf(root.right)) sum += sumOfLeftLeaves(root.right);
         
         return sum;
     }
