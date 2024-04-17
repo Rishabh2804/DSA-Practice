@@ -50,10 +50,9 @@ class Solution {
     
     private String parse(List<Integer> seq){
         StringBuilder builder = new StringBuilder();
-        for(int i : seq)
-            builder.append((char)('a' + i));
+        for(int i = seq.size() - 1; i >= 0; --i)
+            builder.append((char)('a' + seq.get(i)));
         
-        builder.reverse();
         return builder.toString();
     }
     
