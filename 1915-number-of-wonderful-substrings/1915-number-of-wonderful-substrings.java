@@ -3,7 +3,7 @@ class Solution {
     private List<Integer> getDiffMasks(int currMask) {
         
         List<Integer> masks = new ArrayList<>();
-        for(int i = 0; i < 26; ++i){
+        for(int i = 0; i < 10; ++i){
             int bit = 1 << i;
             int mask = currMask ^ bit;
             masks.add(mask);
