@@ -13,7 +13,7 @@ class Solution {
                 si ++;
                 ei --;
             } else
-                ei--;            
+                ei--;
         }
        
         return boats;
