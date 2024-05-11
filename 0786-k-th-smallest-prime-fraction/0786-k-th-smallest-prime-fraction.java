@@ -5,7 +5,8 @@ class Solution {
         PriorityQueue<int[]> fracs = new PriorityQueue<>((a, b) -> a[0] * b[1] - b[0] * a[1]);
         
         for(int i = 0; i < n; ++i){
-            for(int j = i + 1; j < n; ++j) fracs.add(new int[] {arr[i], arr[j]});
+            for(int j = i + 1; j < n; ++j) 
+                fracs.add(new int[] {arr[i], arr[j]});
         }
         
         while(k --> 1) fracs.poll();
