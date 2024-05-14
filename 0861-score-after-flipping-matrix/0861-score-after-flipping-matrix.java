@@ -95,7 +95,6 @@ class Solution {
             boolean op1 = checkCols(grid);
             boolean op2 = checkRows(grid);
             done = op1 && op2;
-            // print(grid);
         }
         
         return getScore(grid);
