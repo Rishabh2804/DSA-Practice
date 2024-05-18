@@ -2,7 +2,7 @@ class Solution {
 public:
     int minSizeSubarray(vector<int>& n, long long t)
 {
-	long long s = reduce(begin(n), end(n), 0ll);
+	int s = reduce(begin(n), end(n), 0ll);
 	int quot(t/s), sz(size(n));
 	t = t%s;
 	int out{INT_MAX};
