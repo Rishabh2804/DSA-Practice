@@ -5,19 +5,6 @@ class Solution {
         {-1, 0}, {0, 1}, {0, -1}, {1, 0}
     };
     
-    private void print(int[][] arr){
-        for(int[] row : arr){
-            for(int c : row) System.out.print(c + " ");
-            
-            System.out.println();
-        }
-        System.out.println();
-    }
-    
-    private boolean xor(boolean a, boolean b){
-        return (a || b) && !(a && b);
-    }    
-    
     private int[][] getSafetyMatrix(List<List<Integer>> grid){
         
         int n = grid.size();
