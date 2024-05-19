@@ -46,17 +46,15 @@ class Solution {
                     int x = i + dir[0];
                     int y = j + dir[1];
                     
-                    if(0 <= x && x < n && 0 <= y && y < n){
-                        if(safety[x][y] != INF) continue;
+                    if(x < 0 || x >= n || y < 0 || y >= n) continue;                    
+                    if(safety[x][y] != INF) continue;
 
-                        safety[x][y] = 1 + safety[i][j];
-                        cells.add(new int[]{x, y});
-                    }
+                    safety[x][y] = 1 + safety[i][j];
+                    cells.add(new int[]{x, y});
                 }                                
             }
         }
         
-        print(safety);
         return safety;
     }
     
@@ -96,27 +94,6 @@ class Solution {
         }
         
         return false;
-    }
-    
-    private int solve(int i, int j, int[][] safety, boolean[][] visited){
-        if(i < 0 || j < 0 || i >= safety.length || j >= safety.length) return -1;
-        
-        if(i == safety.length - 1 && j == safety.length - 1) return safety[i][j];        
-        if(visited[i][j]) return -1;
-        
-        visited[i][j] = true;
-        
-        int currSafety = 0;
-        for(int[] dir : dirs){
-            int x = i + dir[0];
-            int y = j + dir[1];
-            
-            int rest = solve(x, y, safety, visited);
-            currSafety = Math.max(currSafety, rest);
-        }
-        
-        visited[i][j] = false;
-        return Math.min(currSafety, safety[i][j]);
     }
     
     public int maximumSafenessFactor(List<List<Integer>> grid) {
