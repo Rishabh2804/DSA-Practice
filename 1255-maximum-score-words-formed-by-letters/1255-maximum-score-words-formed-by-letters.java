@@ -41,7 +41,7 @@ class Solution {
         return sc;
     }
     
-    private int solve(int i, String[] words, int[] score, String currFreq, HashMap<Integer, HashMap<String, Integer>> dp){
+    private int solve(int i, String[] words, int[] score, int[] currFreq, HashMap<Integer, HashMap<String, Integer>> dp){
         if(i >= words.length) return 0;
         
         // if(dp.get(i) != null && dp.get(i).containsKey(currFreq)) return dp.get(i).get(currFreq);
@@ -49,14 +49,17 @@ class Solution {
         int leave = solve(i + 1, words, score, currFreq, dp);
         
         int take = 0;
-        int[] freq = getFreq(currFreq);
+        int[] freq = new int[26];
+        
+        for(int j = 0; j < 26; ++j)
+            freq[j] = currFreq[j];
         
         int currScore = check(words[i], freq, score);
         if(currScore != -1){
             
-            String newFreq = compress(freq);
+            // String newFreq = compress(freq);
             
-            take = currScore + solve(i + 1, words, score, newFreq, dp);
+            take = currScore + solve(i + 1, words, score, freq, dp);
         }
         
         int max = Math.max(leave, take);
@@ -68,12 +71,12 @@ class Solution {
         int[] freq = new int[26];
         for(char c : letters) freq[c - 'a']++;
         
-        String currFreq = compress(freq);
+        // String currFreq = compress(freq);
         
         HashMap<Integer, HashMap<String, Integer>> dp = new HashMap<>();
         // for(int i = 0; i < words.length; ++i) dp.put(i, new HashMap<>());
         
-        int ans = solve(0, words, score, currFreq, dp);
+        int ans = solve(0, words, score, freq, dp);
         
         return ans;
     }
