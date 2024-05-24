@@ -44,7 +44,7 @@ class Solution {
     private int solve(int i, String[] words, int[] score, String currFreq, HashMap<Integer, HashMap<String, Integer>> dp){
         if(i >= words.length) return 0;
         
-        if(dp.get(i) != null && dp.get(i).containsKey(currFreq)) return dp.get(i).get(currFreq);
+        // if(dp.get(i) != null && dp.get(i).containsKey(currFreq)) return dp.get(i).get(currFreq);
         
         int leave = solve(i + 1, words, score, currFreq, dp);
         
@@ -60,7 +60,7 @@ class Solution {
         }
         
         int max = Math.max(leave, take);
-        dp.get(i).put(currFreq, max);
+        // dp.get(i).put(currFreq, max);
         return max;
     }
     
@@ -71,7 +71,7 @@ class Solution {
         String currFreq = compress(freq);
         
         HashMap<Integer, HashMap<String, Integer>> dp = new HashMap<>();
-        for(int i = 0; i < words.length; ++i) dp.put(i, new HashMap<>());
+        // for(int i = 0; i < words.length; ++i) dp.put(i, new HashMap<>());
         
         int ans = solve(0, words, score, currFreq, dp);
         
