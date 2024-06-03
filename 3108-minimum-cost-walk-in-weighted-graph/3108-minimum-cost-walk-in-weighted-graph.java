@@ -7,10 +7,11 @@ class Solution {
         
         int p = parent[a];
         if(p != a){
-            p = find(p);
-        }
+            // p = find(p);
+            return find(p);
+        } else return p;
         
-        return parent[a] = p;
+        // return parent[a] = p;
     }
     
     private void union(int a, int b){
@@ -27,7 +28,7 @@ class Solution {
                 parent[p2] = p1;
                 size[p1] += size[p2];
             }
-        }        
+        }
     }
     
     public int[] minimumCost(int n, int[][] edges, int[][] query) {
