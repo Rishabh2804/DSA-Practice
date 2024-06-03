@@ -7,11 +7,10 @@ class Solution {
         
         int p = parent[a];
         if(p != a){
-            // p = find(p);
-            return find(p);
-        } else return p;
+            p = find(p);          
+        } 
         
-        // return parent[a] = p;
+        return parent[a] = p;
     }
     
     private void union(int a, int b){
