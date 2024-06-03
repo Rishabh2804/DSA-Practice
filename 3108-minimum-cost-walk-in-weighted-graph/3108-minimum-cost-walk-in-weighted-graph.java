@@ -20,13 +20,18 @@ class Solution {
         
         if(p1 == p2) return;
         else {
-            parent[p1] = p2;
+            if(size[p1] <= size[p2]){
+                parent[p1] = p2;
+                size[p2] += size[p1];
+            } else {
+                parent[p2] = p1;
+                size[p1] += size[p2];
+            }
         }        
     }
     
     public int[] minimumCost(int n, int[][] edges, int[][] query) {
-        
-        
+                
         parent = new int[n];
         for(int i = 0; i < n; ++i) parent[i] = i;
         
