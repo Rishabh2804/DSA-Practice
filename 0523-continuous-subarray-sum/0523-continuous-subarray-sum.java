@@ -1,17 +1,26 @@
+import java.util.HashMap;
+
 class Solution {
+
     public boolean checkSubarraySum(int[] nums, int k) {
-        // initialize the hash map with index 0 for sum 0
-        Map<Integer, Integer> hashMap = new HashMap<>(Map.of(0, 0));
-        int sum = 0;
+        int prefixMod = 0;
+        HashMap<Integer, Integer> modSeen = new HashMap<>();
+        modSeen.put(0, -1);
+
         for (int i = 0; i < nums.length; i++) {
-            sum += nums[i];
-            // if the remainder sum % k occurs for the first time
-            if (!hashMap.containsKey(sum % k))
-                hashMap.put(sum % k, i + 1);
-            // if the subarray size is at least two
-            else if (hashMap.get(sum % k) < i)
-                return true;
+            prefixMod = (prefixMod + nums[i]) % k;
+
+            if (modSeen.containsKey(prefixMod)) {
+                // ensures that the size of subarray is at least 2
+                if (i - modSeen.get(prefixMod) > 1) {
+                    return true;
+                }
+            } else {
+                // mark the value of prefixMod with the current index.
+                modSeen.put(prefixMod, i);
+            }
         }
+
         return false;
     }
 }
