@@ -1,11 +1,10 @@
 class Solution {
     public int subarraysDivByK(int[] nums, int k) {
-         
+        
         HashMap<Integer, Integer> freq = new HashMap<>();
         freq.put(0, 1);
         
         int count = 0;
-
         int prefixSum = 0;
         for(int num : nums){
             prefixSum += num;            
@@ -17,10 +16,6 @@ class Solution {
             count += freq.getOrDefault(prefixSum, 0);
             
             freq.put(prefixSum, freq.getOrDefault(prefixSum, 0) + 1);    
-            
-            // System.out.println(prefixSum + " " + count);            
-            // System.out.println(freq);
-            // System.out.println();            
         }
         
         return count;
