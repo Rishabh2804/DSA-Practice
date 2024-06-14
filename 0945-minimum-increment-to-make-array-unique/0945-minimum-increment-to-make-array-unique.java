@@ -3,18 +3,18 @@ class Solution {
         
         int count = 0;
         Arrays.sort(nums);
-        List<Integer> list = new ArrayList<>();
+        int max = -1;
         for(int i = 0; i < nums.length; ++i){
-            if(list.isEmpty()){
-                list.add(nums[i]);
+            if(max == -1){
+                max = nums[i];
                 continue;
             }
             
-            if(list.get(list.size() - 1) >= nums[i]){
-                int target = list.get(list.size() - 1) + 1;
+            if(max >= nums[i]){
+                int target = max + 1;
                 count += target - nums[i];
-                list.add(target);
-            } else list.add(nums[i]);                        
+                max = target;
+            } else max = nums[i];
         }        
         
         return count;
