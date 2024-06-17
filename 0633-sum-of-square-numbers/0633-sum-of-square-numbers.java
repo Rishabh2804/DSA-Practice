@@ -32,11 +32,25 @@ class Solution {
         return false;   
     }
     
-    private boolean solveTwoPointer(int c){
+    private boolean solveTwoPointer(int c, int[] arr){
+        if(c == 0) return true;
+        
+        int si = 0, ei = arr.length - 1;
+        while(si < ei){            
+            
+            if(arr[si] > c) return false;
+            if(si < ei && arr[ei] == c - arr[si]) return true;            
+            
+            while(si < ei && arr[ei] > c - arr[si]) ei--;
+            while(si < ei && arr[ei] < c - arr[si]) si++;           
+            
+            System.out.println(si + " " + ei);
+        }
+        
         return false;
     }
     
     public boolean judgeSquareSum(int c) {
-        return solveBS(c);            
+        return solveBS(c);
     }
 }
