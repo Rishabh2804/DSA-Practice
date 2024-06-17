@@ -21,8 +21,7 @@ class Solution {
         return false;
     }
     
-    public boolean judgeSquareSum(int c) {
-        
+    private boolean solveBS(int c){
         for(int i : squares){
             if(i > c) break;
             
@@ -30,6 +29,14 @@ class Solution {
             if(found) return true;
         }
         
+        return false;   
+    }
+    
+    private boolean solveTwoPointer(int c){
         return false;
+    }
+    
+    public boolean judgeSquareSum(int c) {
+        return solveBS(c);            
     }
 }
