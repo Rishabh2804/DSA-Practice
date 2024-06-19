@@ -1,12 +1,4 @@
 class Solution {
-    
-    private void print(int[] arr){
-        for(int i : arr){
-            System.out.print(i + " ");
-        }
-        System.out.println();
-    }
-    
     public int removeElement(int[] nums, int val) {
         
         int ei = nums.length - 1;
@@ -23,8 +15,6 @@ class Solution {
             while(ei >= 0 && nums[ei] == val) ei --;
             
         }
-        
-        print(nums);
         
         return ei + 1;
     }
