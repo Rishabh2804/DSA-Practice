@@ -11,7 +11,6 @@ class Solution {
             if(m <= 1) return true;
         }
         
-        // System.out.println(dis + " " + m);
         return false;
     }
     
