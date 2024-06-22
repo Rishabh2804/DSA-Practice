@@ -12,7 +12,6 @@ class Solution {
             freq.put(oddCount, freq.getOrDefault(oddCount, 0) + 1);
         }
         
-        // count += freq.getOrDefault(oddCount - k, 0);
         return count;
     }
 }
