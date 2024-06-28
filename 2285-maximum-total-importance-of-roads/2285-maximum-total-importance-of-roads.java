@@ -24,8 +24,6 @@ class Solution {
             
             
             int rem = adj.get(curr).size();
-            // System.out.println(curr + " " + rem);
-            
             total += 1l * val * rem;
             val--;
         }
