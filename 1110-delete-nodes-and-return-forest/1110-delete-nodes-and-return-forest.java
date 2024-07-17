@@ -14,32 +14,54 @@
  * }
  */
 class Solution {
+    static final int DEL_LENGTH = 1001;
+    static List<TreeNode> forest;
     
-    private List<TreeNode> list;
-    
-    private void solve(TreeNode root, boolean[] dlt){
+    public void solve(TreeNode root, boolean[] del){
         if(root == null) return;
         
-        if(dlt[root.val]){
-            if(root.left != null && !dlt[root.left.val]) list.add(root.left);
-            if(root.right != null && !dlt[root.right.val]) list.add(root.right);            
+        solve(root.left, del);
+        solve(root.right, del);
+        
+        if(root.left != null && del[root.left.val]){
+            if(root.left.left != null)
+                forest.add(root.left.left);
+            
+            if(root.left.right != null)
+                forest.add(root.left.right);
+            
+            root.left = null;
         }
         
-        solve(root.left, dlt);
-        solve(root.right, dlt);
-        
-        if(root.left != null && dlt[root.left.val]) root.left = null;
-        if(root.right != null && dlt[root.right.val]) root.right = null;
+        if(root.right != null && del[root.right.val]){
+            if(root.right.left != null)
+                forest.add(root.right.left);
+            
+            if(root.right.right != null)
+                forest.add(root.right.right); 
+            
+            root.right = null;
+        }                
     }
     
     public List<TreeNode> delNodes(TreeNode root, int[] to_delete) {
-        list = new ArrayList<>();
-        boolean[] dlt = new boolean[1001];
-        for(int i : to_delete) dlt[i] = true;
+        forest = new LinkedList<>();
+        if(root == null) return forest;
         
-        solve(root, dlt);
-        if(root != null && !dlt[root.val]) list.add(root);
+        boolean[] del = new boolean[DEL_LENGTH];
+        for(int tree = 0; tree < to_delete.length; ++tree)
+            del[to_delete[tree]] = true; 
         
-        return list;
+        solve(root, del);
+        if(del[root.val]){
+            if(root.left != null)
+                forest.add(root.left);
+            
+            if(root.right != null)
+                forest.add(root.right);   
+        } else
+            forest.add(root);
+        
+        return forest;
     }
 }
