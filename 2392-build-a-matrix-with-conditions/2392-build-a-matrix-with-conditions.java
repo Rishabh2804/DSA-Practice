@@ -33,8 +33,6 @@ class Solution {
             if(in[i] == 0) nodes.add(i);        
         }
         
-        if(nodes.isEmpty()) return null;
-        
         int j = 0;
         while(!nodes.isEmpty()){
             int curr = nodes.poll();
