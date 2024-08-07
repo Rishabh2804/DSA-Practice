@@ -52,9 +52,12 @@ class Solution {
             sb.append(str.charAt(i));
         }
         
-        sb.append(str.charAt(str.length() - 1));
+        char first = sb.charAt(0);
+        if(first == ' ') sb.deleteCharAt(0);
+        
+        char last = str.charAt(str.length() - 1);
+        if(last != ' ')  sb.append(last);
             
-        if(sb.charAt(0) == ' ') sb.deleteCharAt(0);
         return sb.toString();
     }
     
@@ -85,17 +88,9 @@ class Solution {
         
         Collections.reverse(parts);
         
-        for(String str : parts) {    
-            
+        for(String str : parts) {                
             sb.append(str);
         }
-        
-        int last = sb.length() - 1;
-        while(last >= 0 && sb.charAt(last) == ' ') {
-            sb.deleteCharAt(last);
-            last --;
-        }
-        
         
         return trim(sb.toString());
     }
