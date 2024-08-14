@@ -31,8 +31,6 @@ class Solution {
             int mid = (si + ei) / 2;
             
             int count = countPairs(nums, mid);
-            // if(count == k) return mid;
-            // else 
             if(count >= k) ei = mid;
             else si = mid + 1;
         }
