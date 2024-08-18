@@ -1,10 +1,7 @@
 class Solution {
     
-    private static final HashSet<Long> set;
-    static  {
-        set = new HashSet<>();
-    }
-    
+    private static final int[] factors = {2, 3, 5};
+        
     public int nthUglyNumber(int n) {
         
         PriorityQueue<Integer> pq = new PriorityQueue<>();
@@ -12,8 +9,6 @@ class Solution {
         
         HashSet<Integer> vis = new HashSet<>();
         vis.add(1);
-        
-        int[] factors = {2, 3, 5};
         
         while(n > 1){
             int curr = pq.poll();            
