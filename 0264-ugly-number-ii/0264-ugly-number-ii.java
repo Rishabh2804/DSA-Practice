@@ -16,7 +16,7 @@ class Solution {
             for(int fact : factors){
                 long temp = 1L * curr * fact;
                 
-                if(temp >= Integer.MAX_VALUE) continue;
+                if(temp >= Integer.MAX_VALUE) break;
                 
                 int curr1 = (int) temp;
                 if(!vis.contains(curr1)) {
