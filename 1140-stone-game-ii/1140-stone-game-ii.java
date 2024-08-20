@@ -1,32 +1,46 @@
 class Solution {
-    private int f(int[] piles, int[][][] dp, int p, int i, int m) {
-        if (i == piles.length) {
-            return 0;
+    
+    public int solve(int si, int m, int[] piles, int[][] dp, int[] suffix) {
+        if(si >= piles.length) return 0;
+        if(dp[si][m] != -1) return dp[si][m];
+        
+        int maxStones = 0;
+        int stones = 0;
+        
+        int lim = Math.min(2 * m, piles.length - si);
+        for(int x = 1; x <= lim; ++x){
+            stones += piles[si + x - 1];
+            
+            int ans = suffix[si + x] - solve(si + x, Math.max(x, m), piles, dp, suffix);
+            maxStones = Math.max(maxStones, stones + ans);
         }
-        if (dp[p][i][m] != -1) {
-            return dp[p][i][m];
-        }
-        int res = p == 1 ? 1000000 : -1, s = 0;
-        for (int x = 1; x <= Math.min(2 * m, piles.length - i); x++) {
-            s += piles[i + x - 1];
-            if (p == 0) {
-                res = Math.max(res, s + f(piles, dp, 1, i + x, Math.max(m, x)));
-            }
-            else {
-                res = Math.min(res, f(piles, dp, 0, i + x, Math.max(m, x)));
-            }
-        }
-        return dp[p][i][m] = res;
+        
+        return dp[si][m] = maxStones;    
     }
+    
     public int stoneGameII(int[] piles) {
-        int[][][] dp = new int[2][piles.length + 1][piles.length + 1];
-        for (int p = 0; p < 2; p++) {
-            for (int i = 0; i <= piles.length; i++) {
-                for (int m = 0; m <= piles.length; m++) {
-                    dp[p][i][m] = -1;
-                }
-            }
+        int[][] dp = new int[piles.length][piles.length + 1];
+        for(int[] row : dp)
+            Arrays.fill(row, -1);
+        
+        int[] suffix = new int[piles.length + 1];
+        suffix[piles.length - 1] = piles[piles.length - 1];
+        
+        for(int i = piles.length - 2; i >= 0; --i)
+            suffix[i] = piles[i] + suffix[i + 1];
+        
+        solve(0, 1, piles, dp, suffix);
+        
+        for(int[] row : dp){
+            for(int i : row)
+                System.out.print(i + " ");
+            System.out.println();
         }
-        return f(piles, dp, 0, 0, 1);
+        
+//         for(int s : suffix)
+//             System.out.print(s + " ");
+//         System.out.println();
+        
+        return dp[0][1];
     }
 }
