@@ -31,16 +31,6 @@ class Solution {
         
         solve(0, 1, piles, dp, suffix);
         
-        for(int[] row : dp){
-            for(int i : row)
-                System.out.print(i + " ");
-            System.out.println();
-        }
-        
-//         for(int s : suffix)
-//             System.out.print(s + " ");
-//         System.out.println();
-        
         return dp[0][1];
     }
 }
