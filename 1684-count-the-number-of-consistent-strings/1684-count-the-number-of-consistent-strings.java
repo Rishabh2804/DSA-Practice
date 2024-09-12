@@ -33,8 +33,10 @@ class Solution {
         int count = 0;
         int mask = generateMask(allowed);
         
-        for(String word : words)
-            count += isConsistent(word, mask) ? 1 : 0;
+        for(String word : words) {
+            if(isConsistent(word, mask)) 
+                count ++;
+        }
         
         return count;
     }
