@@ -46,9 +46,6 @@ class Solution {
         
         int[] last = getLast(num);
         
-        print(dig);
-        print(last);
-        
         int pos = dig.length - 1;
         while(pos >= 0 && dig[pos] == 0) pos --;                
         
