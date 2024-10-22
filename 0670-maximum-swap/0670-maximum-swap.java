@@ -1,5 +1,34 @@
 class Solution {
     
+    class DigiInfo {
+        int[] digits;
+        int[] last;
+        
+        private static final int SIZE = 9;
+        
+        public DigiInfo(int num){            
+            run(num);
+        }
+        
+        private void run(int num){    
+            this.digits = new int[SIZE];
+            this.last = new int[10];
+            Arrays.fill(last, -1);
+            
+            int pos = 0;
+            while(num > 0){
+                int curr = num % 10;
+                num /= 10;
+
+                digits[pos] = curr;
+                if(last[curr] == -1)
+                    last[curr] = pos;
+            
+                pos++;
+            }
+        }    
+    }
+    
     private void print(int[] arr){
         for(int i : arr)
             System.out.print(i + " ");
@@ -7,44 +36,12 @@ class Solution {
         System.out.println();
     }
     
-    private int[] getDigits(int num){
-        int[] dig = new int[9];
-        
-        int pos = 0;
-        while(num > 0){
-            int curr = num % 10;
-            num /= 10;
-            
-            dig[pos] = curr;
-            pos++;
-        }
-        
-        return dig;        
-    } 
-    
-    private int[] getLast(int num){
-        int[] map = new int[10];
-        Arrays.fill(map, -1);
-        
-        int pos = 0;
-        while(num > 0){
-            int curr = num % 10;
-            num /= 10;
-            
-            if(map[curr] == -1)
-                map[curr] = pos;
-            
-            pos ++;  
-        }
-        
-        return map;
-    }
-    
     public int maximumSwap(int num) {
         
-        int[] dig = getDigits(num);
+        DigiInfo info = new DigiInfo(num);
         
-        int[] last = getLast(num);
+        int[] dig = info.digits;        
+        int[] last = info.last;
         
         int pos = dig.length - 1;
         while(pos >= 0 && dig[pos] == 0) pos --;                
