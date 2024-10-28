@@ -1,48 +1,34 @@
 class Solution {
-    private static final int NONE = -1;
+    
+    private static final int NONE = -1;   
+    private static final int DEF_LEN = 1;
     private static final int MIN_LEN = 2;
+    private static final int MAX = 46341; // sqrt of Integer.MAX_VALUE
     
-    private void print(int[] arr){
-        for(int i : arr)
-            System.out.print(i + " ");
+    private int solve(int curr, HashMap<Integer, Integer> dp){
+        if(!dp.containsKey(curr)) return 0;
         
-        System.out.println();
-    }
-    
-    private int lowerBound(int x, int si, int[] arr){
+        if(dp.get(curr) > DEF_LEN) return dp.get(curr);
         
-        int ei = arr.length - 1;
-        while(si < ei){
-            
-            int mid = (si + ei) / 2;
-            if(arr[mid] >= x) ei = mid;
-            else si = mid + 1;
-        }
+        int len = 1 + solve(curr * curr, dp);
+        dp.put(curr, len);
         
-        if(si >= arr.length || arr[si] != x) return NONE;
-        return si;
-    }
-    
-    private int solve(int i, int[] nums){
-        if(i >= nums.length) return 0;
-        
-        int curr = nums[i];
-        int next = lowerBound(curr * curr, i, nums);
-        if(next == NONE) return 1;
-        
-        return 1 + solve(next, nums);
+        return len;
     }
     
     public int longestSquareStreak(int[] nums) {
-        Arrays.sort(nums);
+        HashMap<Integer, Integer> dp = new HashMap<>();
+        for(int i : nums) dp.put(i, DEF_LEN);
         
-        int max = 0;
-        for(int i = 0; i < nums.length; ++i){
-            int currLen = solve(i, nums);
-            max = Math.max(max, currLen);
+        int maxLen = DEF_LEN;
+        for(int num : dp.keySet()){
+            if(num > MAX) continue;
+            
+            int len = solve(num, dp);
+            maxLen = Math.max(maxLen, len);
         }
         
-        if(max < MIN_LEN) return NONE;
-        return max;
+        if(maxLen < MIN_LEN) return NONE;
+        return maxLen;
     }
 }
